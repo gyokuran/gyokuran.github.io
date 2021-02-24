@@ -13,8 +13,8 @@ $css += '#exL select.name { width:calc(100% - 45px); height:40px; font-size:20px
 $css += '#exL select.name option { font-size:20px; }';
 $css += '#exL input.num { width:45px; height:40px; font-size:32px; color:#FFF; line-height:40px; font-weight:bold; font-family:"Arial", sans-serif; text-align:center; padding:0; border:0; background:#FF6633; }';
 $css += '#exL .right select.name { text-align:right; direction:rtl; }';
-$css += '#exL .space { display:flex; justify-content:center; position:relative; }';
-$css += '#exL .space p { font-size:16px; text-align:center; }';
+$css += '#exL .space { display:flex; justify-content:center; align-items:center; width:160px; position:relative; }';
+$css += '#exL .space p { font-size:16px; color:#333; }';
 $css += '#exL input[type="number"]::-webkit-outer-spin-button,#exL input[type="number"]::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; width:0; height:0; overflow:hidden; }';
 $css += '#exL input[type="number"] { -moz-appearance:textfield; }';
 $css += '#exL input[type="color"] { cursor:pointer; }';
