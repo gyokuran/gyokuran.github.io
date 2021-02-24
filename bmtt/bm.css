@@ -1,0 +1,30 @@
+body { padding-top:100px; }
+#exL { position:fixed; left:0; top:0; z-index:99999; width:100%; height:100px; background:#FFF; border-bottom:1px solid #222; }
+#exL * { margin:0; padding:0; line-height:1; font-size:0; box-sizing:border-box; appearance:none; }
+#exL input:focus,#exL select:focus { outline:none; }
+#exL .wrap { width:100%; padding:10px 0 30px; }
+#exL .inner { display:flex; flex:nowrap; justify-content:space-between; width:100%; background:#FFF transparent; }
+#exL .left { display:flex; justify-content:space-between; width:calc(50% - 10px); position:relative; }
+#exL .right { display:flex; justify-content:space-between; flex-direction:row-reverse; width:calc(50% - 10px); position:relative; }
+#exL select.name { width:calc(100% - 45px); height:60px; font-size:24px; line-height:60px; color:#FFF; font-weight:bold; padding:0 15px; border:0; background:rgba(0,0,0,.87); overflow:hidden; cursor:pointer; }
+#exL select.name option { font-size:24px; }
+#exL input.num { width:45px; height:60px; font-size:32px; color:#FFF; line-height:60px; font-weight:bold; font-family:"Arial", sans-serif; text-align:center; padding:0; border:0; background:#FF6633; }
+#exL .right select.name { text-align:right; direction:rtl; }
+#exL input[type="number"]::-webkit-outer-spin-button,#exL input[type="number"]::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; width:0; height:0; overflow:hidden; }
+#exL input[type="number"] { -moz-appearance:textfield; }
+#exL input[type="color"] { cursor:pointer; }
+#exL .-reverse { }
+#exL .-reverse .inner { flex-direction:row-reverse; }
+#exL .-reverse .left { flex-direction:row-reverse; }
+#exL .-reverse .right { flex-direction:row; }
+#exL .-reverse .left select.name { text-align:right; direction:rtl; }
+#exL .-reverse .right select.name { text-align:left; direction:ltr; }
+#exL .numbtn { display:flex; width:30px; height:20px; justify-content:center; align-items:center; font-size:14px; cursor:pointer; border-radius:3px; background:#EEE; user-select:none; position:absolute; bottom:-25px; }
+#exL #up_L { right:35px; }
+#exL #down_L { right:0; }
+#exL #up_R { left:35px; }
+#exL #down_R { left:0; }
+#exL .-reverse #up_L { left:35px; right:initial; }
+#exL .-reverse #down_L { left:0; right:initial; }
+#exL .-reverse #up_R { right:35px; left:initial; }
+#exL .-reverse #down_R { right:0; left:initial; }
