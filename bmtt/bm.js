@@ -1,4 +1,39 @@
 (function(d){
+	if(!d.getElementById('exL')){
+	let $css = '';
+$css += 'body { padding-top:100px; }';
+$css += '#exL { position:fixed; left:0; top:0; z-index:99999; width:100%; height:100px; background:#FFF; border-bottom:1px solid #222; }';
+$css += '#exL * { margin:0; padding:0; line-height:1; font-size:0; box-sizing:border-box; appearance:none; }';
+$css += '#exL input:focus,#exL select:focus { outline:none; }';
+$css += '#exL .wrap { width:100%; padding:10px 0 30px; }';
+$css += '#exL .inner { display:flex; flex:nowrap; justify-content:space-between; width:100%; background:#FFF transparent; }';
+$css += '#exL .left { display:flex; justify-content:space-between; width:calc(50% - 10px); position:relative; }';
+$css += '#exL .right { display:flex; justify-content:space-between; flex-direction:row-reverse; width:calc(50% - 10px); position:relative; }';
+$css += '#exL select.name { width:calc(100% - 45px); height:60px; font-size:24px; line-height:60px; color:#FFF; font-weight:bold; padding:0 15px; border:0; background:rgba(0,0,0,.87); overflow:hidden; cursor:pointer; }';
+$css += '#exL select.name option { font-size:24px; }';
+$css += '#exL input.num { width:45px; height:60px; font-size:32px; color:#FFF; line-height:60px; font-weight:bold; font-family:"Arial", sans-serif; text-align:center; padding:0; border:0; background:#FF6633; }';
+$css += '#exL .right select.name { text-align:right; direction:rtl; }';
+$css += '#exL input[type="number"]::-webkit-outer-spin-button,#exL input[type="number"]::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; width:0; height:0; overflow:hidden; }';
+$css += '#exL input[type="number"] { -moz-appearance:textfield; }';
+$css += '#exL input[type="color"] { cursor:pointer; }';
+$css += '#exL .-reverse { }';
+$css += '#exL .-reverse .inner { flex-direction:row-reverse; }';
+$css += '#exL .-reverse .left { flex-direction:row-reverse; }';
+$css += '#exL .-reverse .right { flex-direction:row; }';
+$css += '#exL .-reverse .left select.name { text-align:right; direction:rtl; }';
+$css += '#exL .-reverse .right select.name { text-align:left; direction:ltr; }';
+$css += '#exL .numbtn { display:flex; width:30px; height:20px; justify-content:center; align-items:center; font-size:14px; cursor:pointer; border-radius:3px; background:#EEE; user-select:none; position:absolute; bottom:-25px; }';
+$css += '#exL #up_L { right:35px; }';
+$css += '#exL #down_L { right:0; }';
+$css += '#exL #up_R { left:35px; }';
+$css += '#exL #down_R { left:0; }';
+$css += '#exL .-reverse #up_L { left:35px; right:initial; }';
+$css += '#exL .-reverse #down_L { left:0; right:initial; }';
+$css += '#exL .-reverse #up_R { right:35px; left:initial; }';
+$css += '#exL .-reverse #down_R { right:0; left:initial; }';
+
+	let $s = d.createElement('style'); $s.innerHTML = $css; d.body.prepend($s);
+	}
 	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [],$c = '', $d = '';
 	for(i=0; i<$a.length; i++){
 		$b.push($a[i].innerText);
