@@ -7,8 +7,8 @@ $css += '#exL * { margin:0; padding:0; line-height:1; font-size:0; box-sizing:bo
 $css += '#exL input:focus,#exL select:focus { outline:none; }';
 $css += '#exL .wrap { width:100%; padding:10px 0 30px; }';
 $css += '#exL .inner { display:flex; flex:nowrap; justify-content:space-between; width:100%; background:#FFF transparent; }';
-$css += '#exL .left { display:flex; justify-content:space-between; width:calc(50% - 10px); position:relative; }';
-$css += '#exL .right { display:flex; justify-content:space-between; flex-direction:row-reverse; width:calc(50% - 10px); position:relative; }';
+$css += '#exL .left { display:flex; justify-content:space-between; width:calc(50% - 80px); position:relative; }';
+$css += '#exL .right { display:flex; justify-content:space-between; flex-direction:row-reverse; width:calc(50% - 80px); position:relative; }';
 $css += '#exL select.name { width:calc(100% - 45px); height:60px; font-size:24px; line-height:60px; color:#FFF; font-weight:bold; padding:0 15px; border:0; background:rgba(0,0,0,.87); overflow:hidden; cursor:pointer; }';
 $css += '#exL select.name option { font-size:24px; }';
 $css += '#exL input.num { width:45px; height:60px; font-size:32px; color:#FFF; line-height:60px; font-weight:bold; font-family:"Arial", sans-serif; text-align:center; padding:0; border:0; background:#FF6633; }';
@@ -39,7 +39,7 @@ $css += '#exL .-reverse #down_R { right:0; left:initial; }';
 		$b.push($a[i].innerText);
 		$c += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
 	};
-	$d = '<div id="exL"><div class="wrap"><div class="inner"><div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div><div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div></div></div></div>';
+	$d = '<div id="exL"><div class="wrap"><div class="inner"><div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div><div class="space"></div><div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div></div></div></div>';
 	d.body.insertAdjacentHTML('beforeend',$d);
 	let $n = d.querySelectorAll('.num'), $nn = d.querySelectorAll('.nubup'), $nnn = d.querySelectorAll('.nubclr');
 	$nn.forEach((trg)=>{
