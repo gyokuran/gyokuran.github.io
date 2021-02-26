@@ -88,7 +88,7 @@ const $_getPL = function(trg){
 	xhr.send();
 	xhr.onreadystatechange = function(){
 		if( xhr.readyState === 4 && xhr.status === 200) {
-			console.log(this);
+			console.log(this.response);
 			let $data = this.responseText;
 			let $json = $data.feed.entry;
 			let $master = [], $A_items = [], $A_entry = [];
