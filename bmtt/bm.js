@@ -33,7 +33,7 @@ $css += '#exL .-reverse #up_L { left:35px; right:initial; }';
 $css += '#exL .-reverse #down_L { left:0; right:initial; }';
 $css += '#exL .-reverse #up_R { right:35px; left:initial; }';
 $css += '#exL .-reverse #down_R { right:0; left:initial; }';
-$css += '#exL #exL_logo { display:block; width:100%; height:40px; background:no-repeat 50% 50%; background-size:cover; position:relative; overflow:hidden; }';
+$css += '#exL #exL_logo { display:block; width:100%; height:40px; background:no-repeat 50% 50%; background-size:cover; position:relative; overflow:hidden; cursor:pointer; }';
 $css += '#exL #exL_logo input { position:absolute; left:9999px; }';
 
 	let $s = d.createElement('style'); $s.innerHTML = $css; d.body.prepend($s);
@@ -58,15 +58,15 @@ $css += '#exL #exL_logo input { position:absolute; left:9999px; }';
 			let $i = [].slice.call($nnn).indexOf(trg); $n[$i].value = 0;
 		});
 	});
-	function pImg(obj){
-		let fileReader = new FileReader();
-		fileReader.onload(()=>{
-			d.getElementById('exL_logo').style.backgroundImage = 'url(' + fileReader.result + ')';
-		});
-		fileReader.readAsDataURL(obj.files[0]);
-	}
-	
+
 })(document);
+function pImg(obj){
+	let fileReader = new FileReader();
+	fileReader.onload(()=>{
+		document.getElementById('exL_logo').style.backgroundImage = 'url(' + fileReader.result + ')';
+	});
+	fileReader.readAsDataURL(obj.files[0]);
+}
 /*******
 Copyright(c) 2021 @gyokuran
 Released under the MIT license
