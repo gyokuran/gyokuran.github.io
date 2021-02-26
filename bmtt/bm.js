@@ -33,6 +33,8 @@ $css += '#exL .-reverse #up_L { left:35px; right:initial; }';
 $css += '#exL .-reverse #down_L { left:0; right:initial; }';
 $css += '#exL .-reverse #up_R { right:35px; left:initial; }';
 $css += '#exL .-reverse #down_R { right:0; left:initial; }';
+$css += '#exL #exL_logo { display:block; width:100%; height:40px; background:no-repeat 50% 50%; background-size:cover; position:relative; overflow:hidden; }';
+$css += '#exL #exL_logo input { position:absolute; left:9999px; }';
 
 	let $s = d.createElement('style'); $s.innerHTML = $css; d.body.prepend($s);
 	}
@@ -41,7 +43,9 @@ $css += '#exL .-reverse #down_R { right:0; left:initial; }';
 		$b.push($a[i].innerText);
 		$c += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
 	};
-	$d = '<div id="exL"><div class="wrap"><div class="inner"><div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div><div class="space"></div><div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div></div></div></div>';
+	$d += '<div id="exL"><div class="wrap"><div class="inner"><div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="space"><label id="exL_logo"><input type="file" id="exL_file" onChange="pImg(this)"></label></div>';
+	$d += '<div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div></div></div></div>';
 	d.body.insertAdjacentHTML('beforeend',$d);
 	let $n = d.querySelectorAll('.num'), $nn = d.querySelectorAll('.nubup'), $nnn = d.querySelectorAll('.nubclr');
 	$nn.forEach((trg)=>{
@@ -54,6 +58,14 @@ $css += '#exL .-reverse #down_R { right:0; left:initial; }';
 			let $i = [].slice.call($nnn).indexOf(trg); $n[$i].value = 0;
 		});
 	});
+	function pImg(obj){
+		let fileReader = new FileReader();
+		fileReader.onload => {
+			d.getElementById('exL_logo').style.backgroundImage = 'url(' + fileReader.result + ')';
+		});
+		fileReader.readAsDataURL(obj.files[0]);
+	}
+	
 })(document);
 /*******
 Copyright(c) 2021 @gyokuran
