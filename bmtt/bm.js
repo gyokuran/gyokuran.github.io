@@ -5,7 +5,7 @@ $css += 'body { padding-top:100px; }';
 $css += '#exL { position:fixed; left:0; top:0; z-index:99999; width:100%; height:100px; background:#FFF; border-bottom:1px solid #222; }';
 $css += '#exL * { margin:0; padding:0; line-height:1; font-size:0; box-sizing:border-box; appearance:none; }';
 $css += '#exL input:focus,#exL select:focus { outline:none; }';
-$css += '#exL .wrap { width:100%; padding:10px 0 30px; }';
+$css += '#exL .wrap { width:100%; padding:10px 0 0; }';
 $css += '#exL .inner { display:flex; flex-wrap:nowrap; justify-content:space-between; width:100%; background:#FFF transparent; }';
 $css += '#exL .left { display:flex; justify-content:space-between; width:calc(50% - 80px); position:relative; }';
 $css += '#exL .right { display:flex; justify-content:space-between; width:calc(50% - 80px); position:relative; flex-direction:row-reverse; }';
@@ -43,9 +43,14 @@ $css += '#exL #exL_logo input { position:absolute; left:-9999px; }';
 		$b.push($a[i].innerText);
 		$c += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
 	};
-	$d += '<div id="exL"><div class="wrap"><div class="inner"><div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
-	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="pImg(this)"></label></div>';
-	$d += '<div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div></div></div></div>';
+	$d += '<div id="exL"><div class="wrap"><div class="inner">';
+	$d += '<div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label></div>';
+	$d += '<div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
+	$d += '</div>';
+	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="セット"></div>';
+	$d += '</div></div>';
+	
 	d.body.insertAdjacentHTML('beforeend',$d);
 	let $n = d.querySelectorAll('.num'), $nn = d.querySelectorAll('.nubup'), $nnn = d.querySelectorAll('.nubclr');
 	$nn.forEach((trg)=>{
@@ -60,12 +65,45 @@ $css += '#exL #exL_logo input { position:absolute; left:-9999px; }';
 	});
 
 })(document);
-function pImg(obj){
+const $_pImg = function(obj){
 	let fileReader = new FileReader();
 	fileReader.onload = (function(){
 		document.getElementById('exL_logo').style.backgroundImage = 'url(' + fileReader.result + ')';
 	});
 	fileReader.readAsDataURL(obj.files[0]);
+}
+const $_getPL = function(trg){
+	$.ajax({
+		type:'GET', url:'https://spreadsheets.google.com/feeds/cells/' + trg + '/od6/public/values?alt=json', dataType:'jsonp', cache:false,
+		success:function(data){
+			let $json = data.feed.entry;
+			let $master = [], $A_items = [], $A_entry = [];
+			for(let i = 0; i < $json.length; i++){
+				if($json[i].gs$cell.row == 1){
+					$A_items.push($json[i].gs$cell.$t);
+					continue;
+				}
+				$A_entry[$A_items[i % $A_items.length]] = $json[i].gs$cell.$t
+				if(i < $json.length - 1){
+					if($json[i + 1].gs$cell.row > $json[i].gs$cell.row){
+						$master.push($A_entry);
+						$A_entry = [];
+					}
+				}
+			}
+			console.log($master);
+/*
+			let $player = '<option>- プレイヤー選択 -</option>';
+			for(let i = 0; i < $master.length; i++){
+				$player += '<option>' + $master[i][$A_items[0]] + '</option>';
+			}
+			$('#player_name_l').html($player);
+			$('#player_name_r').html($player);
+*/
+		},
+		error: function(){
+		}
+	});
 }
 /*******
 Copyright(c) 2021 @gyokuran
