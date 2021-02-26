@@ -35,6 +35,11 @@ $css += '#exL .-reverse #up_R { right:35px; left:initial; }';
 $css += '#exL .-reverse #down_R { right:0; left:initial; }';
 $css += '#exL #exL_logo { display:block; width:100%; height:40px; background:no-repeat 50% 50%; background-size:cover; position:relative; overflow:hidden; cursor:pointer; }';
 $css += '#exL #exL_logo input { position:absolute; left:-9999px; }';
+$css += '#exL .gs { display:flex; justify-content:flex-end; padding:5px 5px 0 0; }';
+$css += '#exL .gs input[type="text"] { width:150px height:30px; font-size:16px; line-height:30px; padding:0 5px; border:1px solid #CCC; }';
+$css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px; border:1px solid #CCC; }';
+		
+		
 
 	let $s = d.createElement('style'); $s.innerHTML = $css; d.body.prepend($s);
 	}
@@ -48,7 +53,7 @@ $css += '#exL #exL_logo input { position:absolute; left:-9999px; }';
 	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label></div>';
 	$d += '<div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
 	$d += '</div>';
-	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="セット"></div>';
+	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
 	
 	d.body.insertAdjacentHTML('beforeend',$d);
@@ -71,6 +76,11 @@ const $_pImg = function(obj){
 		document.getElementById('exL_logo').style.backgroundImage = 'url(' + fileReader.result + ')';
 	});
 	fileReader.readAsDataURL(obj.files[0]);
+}
+
+const $_BTN_getPL = function(){
+	let $url = document.getElementById('csvmaster').value;
+	if($url.length){ $_getPL($url) };
 }
 const $_getPL = function(trg){
 	$.ajax({
