@@ -60,7 +60,7 @@ $css += '#exL #exL_logo input { position:absolute; left:9999px; }';
 	});
 	function pImg(obj){
 		let fileReader = new FileReader();
-		fileReader.onload => {
+		fileReader.onload(()=>{
 			d.getElementById('exL_logo').style.backgroundImage = 'url(' + fileReader.result + ')';
 		});
 		fileReader.readAsDataURL(obj.files[0]);
