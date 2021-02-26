@@ -83,10 +83,13 @@ const $_BTN_getPL = function(){
 	if($url.length){ $_getPL($url) };
 }
 const $_getPL = function(trg){
-	$.ajax({
-		type:'GET', url:'https://spreadsheets.google.com/feeds/cells/' + trg + '/od6/public/values?alt=json', dataType:'jsonp', cache:false,
-		success:function(data){
-			let $json = data.feed.entry;
+	const xhr = new XMLHttpRequest();
+	xhr.open('get', 'https://spreadsheets.google.com/feeds/cells/' + trg + '/od6/public/values?alt=json');
+	xhr.send();
+	xhr.onreadystatechange = function(){
+		if( xhr.readyState === 4 && xhr.status === 200) {
+			let $data = JSON.parse(this.responseText);
+			let $json = $data.feed.entry;
 			let $master = [], $A_items = [], $A_entry = [];
 			for(let i = 0; i < $json.length; i++){
 				if($json[i].gs$cell.row == 1){
@@ -110,11 +113,11 @@ const $_getPL = function(trg){
 			$('#player_name_l').html($player);
 			$('#player_name_r').html($player);
 */
-		},
-		error: function(){
 		}
-	});
+	}
 }
+
+
 /*******
 Copyright(c) 2021 @gyokuran
 Released under the MIT license
