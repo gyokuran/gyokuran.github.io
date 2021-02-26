@@ -89,8 +89,8 @@ const $_getPL = function(trg){
 	xhr.onreadystatechange = function(){
 		if( xhr.readyState === 4 && xhr.status === 200) {
 			let $data = this.responseText;
-			console.log($data.feed.entry);
 			let $json = $data.feed.entry;
+			console.log($json);
 			let $master = [], $A_items = [], $A_entry = [];
 			for(let i = 0; i < $json.length; i++){
 				if($json[i].gs$cell.row == 1){
