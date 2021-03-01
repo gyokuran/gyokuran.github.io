@@ -100,15 +100,14 @@ const $_getPL = function(trg){
 			console.log($data);
 			let $json = $data.feed.entry;
 			let $A_items = [], $A_entry = [];
-console.log($json.length);
 			for(let i = 0; i < $json.length; i++){
 				if($json[i].gs$cell.row == 1){
 					$A_items.push($json[i].gs$cell.$t);
 					continue;
 				}
-				$A_entry[$A_items[i % $A_items.length]] = $json[i].gs$cell.$t
+				$A_entry[$A_items[i % $A_items.length]] = $json[i].gs$cell.$t;
+console.log($json[i].gs$cell.$t)
 				if(i < $json.length - 1){
-console.log($json[i + 1].gs$cell.row + ' / ' + $json[i].gs$cell.row + ' | ' + $A_entry);
 					if($json[i + 1].gs$cell.row > $json[i].gs$cell.row){
 						$master.push($A_entry);
 						$A_entry = [];
