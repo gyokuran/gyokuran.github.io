@@ -50,7 +50,7 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 	}
 	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [], $c = '', $d = '', $t = '';
 	for(i=0; i<$a.length; i++){
-		var $name = $a[i].innerText:$a[i].children[0].value;
+		var $name = ($a[i].innerText)?$a[i].innerText:$a[i].children[0].value;
 		if($name.length){
 			$b.push($a[i].innerText);
 			$t += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
