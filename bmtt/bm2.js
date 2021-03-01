@@ -50,8 +50,10 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 	}
 	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [], $c = '', $d = '', $t = '';
 	for(i=0; i<$a.length; i++){
-		$b.push($a[i].innerText);
-		$t += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
+		if($a[i].innerText.length){
+			$b.push($a[i].innerText);
+			$t += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
+		}
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
 	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_name_l"><option class="def">チームを選択してください</option></select><select class="team saveobj" id="player_team_l">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
