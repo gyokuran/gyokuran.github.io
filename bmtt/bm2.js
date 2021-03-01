@@ -107,11 +107,9 @@ const $_getPL = function(trg){
 				}
 				$A_entry[$A_items[i % $A_items.length]] = $json[i].gs$cell.$t;
 				if(i < $json.length - 1){
-console.log($json[i].gs$cell.row + ' / ' + $json[i].gs$cell.row + ' | ' + $A_entry[$A_items[i % $A_items.length]]);
-					if(($json[i + 1].gs$cell.row - 0) > ($json[i].gs$cell.row - 0)){
+					if($json[i + 1].gs$cell.row - 0 > $json[i].gs$cell.row - 0 || i == $json.length - 2){
 						$master.push($A_entry);
 						$A_entry = [];
-console.log($json[i + 1].gs$cell.row + ' | ' + $json[i].gs$cell.row + ' | ' + $master.length);
 					}
 				}
 			}
