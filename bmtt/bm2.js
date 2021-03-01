@@ -100,6 +100,7 @@ const $_getPL = function(trg){
 			console.log($data);
 			let $json = $data.feed.entry;
 			let $A_items = [], $A_entry = [];
+console.log($json.length);
 			for(let i = 0; i < $json.length; i++){
 				if($json[i].gs$cell.row == 1){
 					$A_items.push($json[i].gs$cell.$t);
@@ -123,16 +124,15 @@ const $_setTeam = function(trg){
 		return false;
 	}
 	for(let i = 0; i < $master.length; i++){
-		console.log($master[i]['チーム名'] + ' | ' + trg.value);
+		let $namesSelect = trg.previousElementSibling;
 		if($master[i]['チーム名'] == trg.value){
-			let $namesSelect = trg.previousElementSibling;
 			let $namesOption = '<option>' + $master[i]['1人目'] + '</option>' + '<option>' + $master[i]['2人目'] + '</option>' + '<option>' + $master[i]['3人目'] + '</option>';
 			$namesSelect.innerHTML = $namesOption;
-console.log($namesSelect.outerHTML);
 			break;
 		} else {
 			if(i == $master.length - 1){
 				alert('リストにないか or リストの表記と違うかも？');
+				$namesSelect.innerHTML = '';
 			}
 		}
 	}
