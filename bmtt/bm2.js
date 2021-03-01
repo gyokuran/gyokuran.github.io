@@ -125,7 +125,10 @@ const $_getPL = function(trg){
 	}
 }
 const $_setTeam = function(trg){
-	if(!$master) return false;
+	if(typeof $master == 'undefined'){
+		alert('先にリストを読み込んでください。')
+		return false;
+	}
 	for(let i = 0; i < $master.length; i++){
 		if($master[i]['チーム名'] == trg.value){
 			let $namesSelect = trg.previousElementSibling;
