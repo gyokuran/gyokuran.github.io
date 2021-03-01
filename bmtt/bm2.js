@@ -106,11 +106,11 @@ const $_getPL = function(trg){
 					continue;
 				}
 				$A_entry[$A_items[i % $A_items.length]] = $json[i].gs$cell.$t;
-console.log($json[i].gs$cell.$t)
 				if(i < $json.length - 1){
 					if($json[i + 1].gs$cell.row > $json[i].gs$cell.row){
 						$master.push($A_entry);
 						$A_entry = [];
+			console.log($master);
 					}
 				}
 			}
