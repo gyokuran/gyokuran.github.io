@@ -9,9 +9,12 @@ $css += '#exL .wrap { width:100%; padding:10px 0 0; }';
 $css += '#exL .inner { display:flex; flex-wrap:nowrap; justify-content:space-between; width:100%; background:#FFF transparent; }';
 $css += '#exL .left { display:flex; justify-content:space-between; width:calc(50% - 80px); position:relative; }';
 $css += '#exL .right { display:flex; justify-content:space-between; width:calc(50% - 80px); position:relative; flex-direction:row-reverse; }';
-$css += '#exL select.name { width:calc(100% - 45px); height:40px; font-size:20px; line-height:40px; color:#FFF; font-weight:bold; padding:0 15px; border:0; background:rgba(0,0,0,.87); overflow:hidden; cursor:pointer; }';
+$css += '#exL .team { display:flex; flex-direction:column; width:calc(100% - 45px); position:relative; flex-direction:row-reverse; }';
+$css += '#exL select.name { width:100%; height:25px; font-size:20px; line-height:1; color:#FFF; font-weight:bold; padding:2px 15px 0; border:0; background:#000; overflow:hidden; cursor:pointer; }';
 $css += '#exL select.name option { font-size:20px; }';
-$css += '#exL input.num { width:45px; height:40px; font-size:32px; color:#FFF; line-height:40px; font-weight:bold; font-family:"Arial", sans-serif; text-align:center; padding:0; border:0; background:#FF6633; }';
+$css += '#exL select.team { width:100%; height:20px; font-size:16px; line-height:20px; color:#FFF; font-weight:bold; padding:0 15px 2px; border:0; background:#222; overflow:hidden; cursor:pointer; }';
+$css += '#exL select.team option { font-size:16px; }';
+$css += '#exL input.num { width:45px; height:45px; font-size:32px; color:#FFF; line-height:40px; font-weight:bold; font-family:"Arial", sans-serif; text-align:center; padding:0; border:0; background:#FF6633; }';
 $css += '#exL .right select.name { text-align:right; direction:rtl; }';
 $css += '#exL .space { display:flex; justify-content:center; align-items:center; width:160px; position:relative; }';
 $css += '#exL .space p { font-size:16px; color:#333; }';
@@ -33,25 +36,23 @@ $css += '#exL .-reverse #up_L { left:35px; right:initial; }';
 $css += '#exL .-reverse #down_L { left:0; right:initial; }';
 $css += '#exL .-reverse #up_R { right:35px; left:initial; }';
 $css += '#exL .-reverse #down_R { right:0; left:initial; }';
-$css += '#exL #exL_logo { display:block; width:100%; height:40px; background:no-repeat 50% 50%; background-size:cover; position:relative; overflow:hidden; cursor:pointer; }';
+$css += '#exL #exL_logo { display:block; width:100%; height:45px; background:no-repeat 50% 50%; background-size:cover; position:relative; overflow:hidden; cursor:pointer; }';
 $css += '#exL #exL_logo input { position:absolute; left:-9999px; }';
 $css += '#exL .gs { display:flex; justify-content:flex-end; padding:5px 5px 0 0; }';
 $css += '#exL .gs input[type="text"] { width:150px height:30px; font-size:16px; line-height:30px; padding:0 5px; border:1px solid #CCC; }';
 $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px; border:1px solid #CCC; }';
-		
-		
 
 	let $s = d.createElement('style'); $s.innerHTML = $css; d.body.prepend($s);
 	}
-	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [],$c = '', $d = '';
+	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [], $c = '', $d = '', $t = '';
 	for(i=0; i<$a.length; i++){
 		$b.push($a[i].innerText);
-		$c += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
+		$t += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
-	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_team_l"><option>ちーむ1</option><option>ちーむ2</option><option>ちーむ3</option></select><select class="name saveobj" id="player_name_l">'+$c+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_name_l"><option>チームを選択してください</option></select><select class="team saveobj" id="player_team_l">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
 	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label></div>';
-	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_team_r"><option>ちーむ1</option><option>ちーむ2</option><option>ちーむ3</option></select><select class="name saveobj" id="player_name_r">'+$c+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_name_r"><option>チームを選択してください</option></select><select class="team saveobj" id="player_team_r">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
 	$d += '</div>';
 	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
