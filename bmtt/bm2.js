@@ -79,6 +79,8 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 
 })(document);
 if(typeof $_pImg !== 'function'){
+console.log('function');
+
 const $_pImg = function(obj){
 	let fileReader = new FileReader();
 	fileReader.onload = (function(){
