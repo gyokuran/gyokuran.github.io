@@ -89,6 +89,7 @@ const $_BTN_getPL = function(){
 	let $url = document.getElementById('csvmaster').value;
 	if($url.length){ $_getPL($url) };
 }
+$master = [];
 const $_getPL = function(trg){
 	const xhr = new XMLHttpRequest();
 	xhr.open('get', 'https://spreadsheets.google.com/feeds/cells/' + trg + '/od6/public/values?alt=json');
@@ -98,7 +99,7 @@ const $_getPL = function(trg){
 			let $data = JSON.parse(this.response);
 			console.log($data);
 			let $json = $data.feed.entry;
-			let $master = [], $A_items = [], $A_entry = [];
+			let $A_items = [], $A_entry = [];
 			for(let i = 0; i < $json.length; i++){
 				if($json[i].gs$cell.row == 1){
 					$A_items.push($json[i].gs$cell.$t);
@@ -125,7 +126,7 @@ const $_getPL = function(trg){
 	}
 }
 const $_setTeam = function(trg){
-	if(typeof $master == 'undefined'){
+	if(!array.length){
 		alert('先にリストを読み込んでください。')
 		return false;
 	}
