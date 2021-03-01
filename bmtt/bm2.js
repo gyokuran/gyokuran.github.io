@@ -109,7 +109,7 @@ const $_getPL = function(trg){
 				if(i < $json.length - 1){
 console.log($json[i].gs$cell.row + ' | ' + $A_entry[$A_items[i % $A_items.length]]);
 					if($json[i + 1].gs$cell.row - 0 > $json[i].gs$cell.row - 0){
-console.log($master);
+console.log($json[i + 1].gs$cell.row + ' | ' + $json[i].gs$cell.row + ' | ' + $master);
 						$master.push($A_entry);
 						$A_entry = [];
 					}
