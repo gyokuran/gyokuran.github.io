@@ -57,9 +57,9 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 		}
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
-	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_name_l"><option class="def">チームを選択してください</option></select><select class="team saveobj" id="player_team_l">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_name_l"><option class="def">チームを選択してください</option></select><select class="team saveobj" id="player_team_l" onChange="$_setTeam(this)">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
 	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label></div>';
-	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_name_r"><option class="def">チームを選択してください</option></select><select class="team saveobj" id="player_team_r">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_name_r"><option class="def">チームを選択してください</option></select><select class="team saveobj" id="player_team_r" onChange="$_setTeam(this)">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
 	$d += '</div>';
 	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
@@ -78,7 +78,7 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 	});
 
 })(document);
-if(typeof $_pImg !== 'undefined'){
+if(typeof $_pImg == 'undefined'){
 const $_pImg = function(obj){
 	let fileReader = new FileReader();
 	fileReader.onload = (function(){
@@ -86,7 +86,6 @@ const $_pImg = function(obj){
 	});
 	fileReader.readAsDataURL(obj.files[0]);
 }
-
 const $_BTN_getPL = function(){
 	let $url = document.getElementById('csvmaster').value;
 	if($url.length){ $_getPL($url) };
@@ -126,6 +125,12 @@ const $_getPL = function(trg){
 		}
 	}
 }
+const $_setTeam = function(trg){
+	if(!$master) return false;
+	for(let i = 0; i < $master.length; i++){
+	}
+}
+
 }//if
 
 /*******
