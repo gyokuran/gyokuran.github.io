@@ -14,6 +14,7 @@ $css += '#exL select.name { width:100%; height:25px; font-size:20px; line-height
 $css += '#exL select.name option { font-size:20px; }';
 $css += '#exL select.team { width:100%; height:20px; font-size:16px; line-height:20px; color:#FFF; font-weight:bold; padding:0 15px 2px; border:0; background:#222; overflow:hidden; cursor:pointer; }';
 $css += '#exL select.team option { font-size:16px; }';
+$css += '#exL select.team option.def { font-size:14px; color:#DDD; }';
 $css += '#exL input.num { width:45px; height:45px; font-size:32px; color:#FFF; line-height:40px; font-weight:bold; font-family:"Arial", sans-serif; text-align:center; padding:0; border:0; background:#FF6633; }';
 $css += '#exL .right select.name { text-align:right; direction:rtl; }';
 $css += '#exL .right select.team { text-align:right; direction:rtl; }';
@@ -53,9 +54,9 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 		$t += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
-	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_name_l"><option>チームを選択してください</option></select><select class="team saveobj" id="player_team_l">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_name_l"><option class="def">チームを選択してください</option></select><select class="team saveobj" id="player_team_l">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
 	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label></div>';
-	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_name_r"><option>チームを選択してください</option></select><select class="team saveobj" id="player_team_r">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_name_r"><option class="def">チームを選択してください</option></select><select class="team saveobj" id="player_team_r">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
 	$d += '</div>';
 	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
