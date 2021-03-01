@@ -49,9 +49,9 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 		$c += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
-	$d += '<div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_team_l"><option>ちーむ1</option><option>ちーむ2</option><option>ちーむ3</option></select><select class="name saveobj" id="player_name_l">'+$c+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
 	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label></div>';
-	$d += '<div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_team_r"><option>ちーむ1</option><option>ちーむ2</option><option>ちーむ3</option></select><select class="name saveobj" id="player_name_r">'+$c+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
 	$d += '</div>';
 	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
