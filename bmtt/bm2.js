@@ -79,7 +79,7 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 	});
 
 })(document);
-if($_pImg == 'undefined'){
+if(typeof $_pImg !== 'undefined'){
 const $_pImg = function(obj){
 	let fileReader = new FileReader();
 	fileReader.onload = (function(){
@@ -127,7 +127,7 @@ const $_getPL = function(trg){
 		}
 	}
 }
-}
+}//if
 
 /*******
 Copyright(c) 2021 @gyokuran
