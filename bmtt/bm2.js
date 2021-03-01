@@ -122,12 +122,13 @@ const $_setTeam = function(trg){
 		alert('先にリストを読み込んでください。')
 		return false;
 	}
-	console.log($master.length + ' | ' + trg.value);
 	for(let i = 0; i < $master.length; i++){
+		console.log($master[i]['チーム名'] + ' | ' + trg.value);
 		if($master[i]['チーム名'] == trg.value){
 			let $namesSelect = trg.previousElementSibling;
 			let $namesOption = '<option>' + $master[i]['1人目'] + '</option>' + '<option>' + $master[i]['2人目'] + '</option>' + '<option>' + $master[i]['3人目'] + '</option>';
-			$namesSelect.innerHtml = $namesOption;
+			$namesSelect.innerHTML = $namesOption;
+console.log($namesSelect.outerHTML);
 			break;
 		} else {
 			if(i == $master.length - 1){
