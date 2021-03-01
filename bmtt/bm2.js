@@ -126,7 +126,7 @@ const $_getPL = function(trg){
 	}
 }
 const $_setTeam = function(trg){
-	if(!array.length){
+	if(!$master.length){
 		alert('先にリストを読み込んでください。')
 		return false;
 	}
