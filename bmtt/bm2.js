@@ -114,14 +114,6 @@ const $_getPL = function(trg){
 				}
 			}
 			console.log($master);
-/*
-			let $player = '<option>- プレイヤー選択 -</option>';
-			for(let i = 0; i < $master.length; i++){
-				$player += '<option>' + $master[i][$A_items[0]] + '</option>';
-			}
-			$('#player_name_l').html($player);
-			$('#player_name_r').html($player);
-*/
 		}
 	}
 }
@@ -130,6 +122,7 @@ const $_setTeam = function(trg){
 		alert('先にリストを読み込んでください。')
 		return false;
 	}
+	console.log($master.length + ' | ' + trg.value);
 	for(let i = 0; i < $master.length; i++){
 		if($master[i]['チーム名'] == trg.value){
 			let $namesSelect = trg.previousElementSibling;
