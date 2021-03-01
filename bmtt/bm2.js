@@ -127,6 +127,16 @@ const $_getPL = function(trg){
 const $_setTeam = function(trg){
 	if(!$master) return false;
 	for(let i = 0; i < $master.length; i++){
+		if($master[i]['チーム名'] == trg.value){
+			let $namesSelect = trg.previousElementSibling;
+			let $namesOption = '<option>' + $master[i]['1人目'] + '</option>' + '<option>' + $master[i]['2人目'] + '</option>' + '<option>' + $master[i]['3人目'] + '</option>';
+			$namesSelect.innerHtml = $namesOption;
+			break;
+		} else {
+			if(i == $master.length - 1){
+				alert('リストにないか or リストの表記と違うかも？');
+			}
+		}
 	}
 }
 
