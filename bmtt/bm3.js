@@ -85,8 +85,9 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 	let $logoimage = d.cookie;
 
 	let $newWin = window.open('', 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
-	$newWin.d.body.innerHTML = $d;
-	$newWin.d.body.prepend($s);
+	$newWin.d.write = ''
+	$newWin.d.write = $s;
+	$newWin.d.write = $d;
 
 })(document);
 const $_pImg = function(obj){
