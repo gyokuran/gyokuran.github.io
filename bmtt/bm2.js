@@ -45,7 +45,7 @@ $css += '#exL #exL_logo input { position:absolute; left:-9999px; }';
 $css += '#exL #exL_logo:before { content:"クリックして画像を設定"; display:inline-block; font-size:12px; color:#777; position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); }';
 $css += '#exL #exL_logo.set:before { display:none; }';
 $css += '#exL .gs { display:flex; justify-content:flex-end; padding:5px 5px 0 0; }';
-$css += '#exL .gs input[type="text"] { width:150px height:30px; font-size:16px; line-height:30px; padding:0 5px; border:1px solid #CCC; }';
+$css += '#exL .gs input[type="text"] { width:200px; height:30px; font-size:14px; line-height:30px; padding:0 5px; border:1px solid #CCC; }';
 $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px; border:1px solid #CCC; }';
 $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; font-size:12px; }';
 
@@ -60,9 +60,9 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 		}
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
-	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_name_l"><option class="def">-リストを読み込んでください-</option></select><select class="team saveobj" id="player_team_l" onChange="$_setTeam(this)">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="left"><div class="team"><select class="name saveobj" id="player_name_l"><option class="def">-スプレッドシートを読み込んでください-</option></select><select class="team saveobj" id="player_team_l" onChange="$_setTeam(this)">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
 	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label><span id="btn_switch" class="numbtn" onClick="$_BTN_reverse()">左右入替</span></div>';
-	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_name_r"><option class="def">-リストを読み込んでください-</option></select><select class="team saveobj" id="player_team_r" onChange="$_setTeam(this)">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="right"><div class="team"><select class="name saveobj" id="player_name_r"><option class="def">-スプレッドシートを読み込んでください-</option></select><select class="team saveobj" id="player_team_r" onChange="$_setTeam(this)">'+$t+'</select></div><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
 	$d += '</div>';
 	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
@@ -131,7 +131,7 @@ const $_getPL = function(trg){
 }
 const $_setTeam = function(trg){
 	if(!$master.length){
-		alert('先にリストを読み込んでください。')
+		alert('先にスプレッドシートを読み込んでください。')
 		return false;
 	}
 	for(let i = 0; i < $master.length; i++){
@@ -142,7 +142,7 @@ const $_setTeam = function(trg){
 			break;
 		} else {
 			if(i == $master.length - 1){
-				alert('リストにないか or リストの表記と違うかも？');
+				alert('シートにないか or シートの表記と違うかも？');
 				$namesSelect.innerHTML = '';
 			}
 		}
