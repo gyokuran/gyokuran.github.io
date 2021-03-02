@@ -80,6 +80,8 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 		});
 	});
 
+	let $logoimage = d.cookie;
+
 })(document);
 const $_pImg = function(obj){
 	let fileReader = new FileReader();
@@ -88,6 +90,7 @@ const $_pImg = function(obj){
 		document.getElementById('exL_logo').classList.add('set');
 	});
 	fileReader.readAsDataURL(obj.files[0]);
+	document.cookie = 'logoimage=' + fileReader.result;
 }
 const $_BTN_getPL = function(){
 	let $url = document.getElementById('csvmaster').value;
