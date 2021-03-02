@@ -125,6 +125,8 @@ const $_getPL = function(trg){
 					}
 				}
 			}
+			document.getElementById('player_team_l').onchange();
+			document.getElementById('player_team_r').onchange();
 			console.log($master);
 		}
 	}
