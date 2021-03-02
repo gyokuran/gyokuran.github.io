@@ -1,6 +1,6 @@
 (function(d){
 	if(!d.getElementById('exL')){
-	let $css = '';
+	var $css = '';
 $css += 'body { padding-top:100px; }';
 $css += '#exL { position:fixed; left:0; top:0; z-index:99999; width:100%; height:100px; background:#FFF; border-bottom:1px solid #222; }';
 $css += '#exL * { margin:0; padding:0; line-height:1; font-size:0; box-sizing:border-box; appearance:none; }';
@@ -50,12 +50,9 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; font-size:12px; }';
 
 	let $s = d.createElement('style');
-console.log($css);
 	$s.innerHTML = $css;
-console.log($css);
 	d.body.prepend($s);
 	}
-console.log($css);
 
 	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [], $c = '', $d = '', $t = '';
 	for(i=0; i<$a.length; i++){
