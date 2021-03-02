@@ -50,9 +50,13 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; font-size:12px; }';
 
 	let $s = d.createElement('style');
+console.log($css);
 	$s.innerHTML = $css;
+console.log($css);
 	d.body.prepend($s);
 	}
+console.log($css);
+
 	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [], $c = '', $d = '', $t = '';
 	for(i=0; i<$a.length; i++){
 		var $name = ($a[i].innerText)?$a[i].innerText:$a[i].children[0].value;
@@ -83,7 +87,6 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 	});
 
 	let $logoimage = d.cookie;
-console.log($css);
 	let $newWin = window.open('', 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
 	$newWin.d.write = '<html><head><style>' + $css + '</style></head><body></body></html>';
 	$newWin.d.write = $d;
