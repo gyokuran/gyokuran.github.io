@@ -47,10 +47,11 @@ $css += '#exL .gs { display:flex; justify-content:flex-end; padding:5px 5px 0 0;
 $css += '#exL .gs input[type="text"] { width:200px; height:30px; font-size:14px; line-height:30px; padding:0 5px; border:1px solid #CCC; }';
 $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px; border:1px solid #CCC; }';
 $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; font-size:12px; }';
+$css += 'head, footer, content { display:none; }';
 
 	let $s = d.createElement('style');
 	$s.innerHTML = $css;
-	d.body.prepend($s);
+//	d.body.prepend($s);
 
 	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [], $c = '', $d = '', $t = '';
 	for(i=0; i<$a.length; i++){
@@ -68,15 +69,17 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
 
-	var $thisURL = window.location.protocol + '//' + window.location.host;
+	var $thisURL = 'https://the-tournament.jp/';
 	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
 	var $j = d.createElement('script');
 	$j.setAttribute('id','exLjs_sub');
 	$j.setAttribute('src','https://gyokuran.github.io/bmtt/bm3_sub.js');
 
 	$newWin.onload = function(){
-		$newWin.d.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
-		$newWin.d.write($d);
+//		$newWin.d.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
+//		$newWin.d.write($d);
+		$newWin.d.body.prepend($s);
+		$newWin.d.body.append($d);
 		$newWin.d.body.append($j);
 	}
 
