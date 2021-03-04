@@ -77,10 +77,10 @@ $css += 'head, footer, content { display:none; }';
 
 	var $thisURL = location.href;
 	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=800,height=150,scrollbars=0,resizable=1,status=0');
-	$newWin.onload = function(){
 setTimeout(function(){
 		console.log($newWin.d.body.innerHTML);
 }, 3000)
+	$newWin.onload = function(){
 		console.log($newWin.d.querySelector('header').innerHTML);
 //		$newWin.d.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
 //		$newWin.d.write($d);
