@@ -78,6 +78,7 @@ $css += 'head, footer, content { display:none; }';
 	var $thisURL = location.href;
 	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=800,height=150,scrollbars=0,resizable=1,status=0');
 setTimeout(function(){
+		console.log($newWin);
 		console.log($newWin.d.body.innerHTML);
 }, 3000)
 	$newWin.onload = function(){
