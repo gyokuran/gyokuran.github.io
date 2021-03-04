@@ -75,10 +75,9 @@ $css += 'head, footer, content { display:none; }';
 	$j.setAttribute('id','exLjs_sub');
 	$j.setAttribute('src','https://gyokuran.github.io/bmtt/bm3_sub.js');
 
-	var $thisURL = 'https://the-tournament.jp/';
+	var $thisURL = location.href;
 	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=800,height=150,scrollbars=0,resizable=1,status=0');
 	$newWin.onload = function(){
-		console.log($newWin);
 		console.log($newWin.d.querySelector('header').innerHTML);
 //		$newWin.d.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
 //		$newWin.d.write($d);
