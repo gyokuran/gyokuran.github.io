@@ -84,8 +84,8 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 	});
 
 	let $logoimage = d.cookie;
-
-	var $newWin = window.open('', 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
+	var $thisURL = location.href.replace('edit','');
+	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
 	$newWin.onload = function(){
 		$newWin.document.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
 		$newWin.document.write($d);
