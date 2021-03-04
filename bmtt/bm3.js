@@ -68,8 +68,7 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
 
-	let $logoimage = d.cookie;
-	var $thisURL = location.href.replace('edit','');
+	var $thisURL = window.location.protocol + '//' + window.location.host;
 	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
 	var $j = d.createElement('script');
 	$j.setAttribute('id','exLjs_sub');
