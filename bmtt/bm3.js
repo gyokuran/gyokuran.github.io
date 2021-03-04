@@ -87,10 +87,16 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 	var $thisURL = location.href.replace('edit','');
 	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
 	$newWin.onload = function(){
-		$newWin.document.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
-		$newWin.document.write($d);
+		$newWin.d.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
+		$newWin.d.write($d);
 		console.log('test')
+
+		let $j = d.createElement('script');
+		$j.setAttribute('id','exLjs_sub');
+		$j.setAttribute('src','https://gyokuran.github.io/bmtt/bm3_sub.js');
+		$newWin.d.body.append($j);
 	}
+
 })(document);
 const $_pImg = function(obj){
 	let fileReader = new FileReader();
