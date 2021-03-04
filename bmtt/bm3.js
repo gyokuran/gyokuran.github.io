@@ -87,9 +87,10 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 
 	var $newWin = window.open('', 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
 	$newWin.document.open();
-	$newWin.document.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
-	$newWin.document.write($d);
-
+	$newWin.onload = function(){
+		$newWin.document.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
+		$newWin.document.write($d);
+	}
 })(document);
 const $_pImg = function(obj){
 	let fileReader = new FileReader();
