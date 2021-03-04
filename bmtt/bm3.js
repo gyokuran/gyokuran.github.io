@@ -81,6 +81,8 @@ $css += 'head, footer, content { display:none; }';
 		$newWin.d.body.prepend($s);
 		$newWin.d.body.append($d);
 		$newWin.d.body.append($j);
+//		$newWin.d.getElementById('');
+		console.log($newWin.d.body.innerHTML);
 	}
 
 })(document);
