@@ -77,7 +77,7 @@ $css += 'head, footer, content { display:none; }';
 
 	var $thisURL = 'https://the-tournament.jp/';
 	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=800,height=150,scrollbars=0,resizable=1,status=0');
-	console.log($newWin.d.innerHTML);
+	console.log($newWin.d.querySelector('header').innerHTML);
 	$newWin.onload = function(){
 //		$newWin.d.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
 //		$newWin.d.write($d);
