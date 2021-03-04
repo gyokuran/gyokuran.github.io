@@ -1,5 +1,4 @@
 (function(d){
-	if(!d.getElementById('exL')){
 	var $css = '';
 $css += 'body { padding-top:100px; }';
 $css += '#exL { position:fixed; left:0; top:0; z-index:99999; width:100%; height:100px; background:#FFF; border-bottom:1px solid #222; }';
@@ -52,7 +51,6 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 	let $s = d.createElement('style');
 	$s.innerHTML = $css;
 	d.body.prepend($s);
-	}
 
 	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [], $c = '', $d = '', $t = '';
 	for(i=0; i<$a.length; i++){
@@ -70,30 +68,16 @@ $css += '#exL #btn_switch { width:auto; height:auto; padding:4px; bottom:-26px; 
 	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
 
-	d.body.insertAdjacentHTML('beforeend',$d);
-	let $n = d.querySelectorAll('.num'), $nn = d.querySelectorAll('.nubup'), $nnn = d.querySelectorAll('.nubclr');
-	$nn.forEach((trg)=>{
-		trg.addEventListener('click',()=>{
-			let $i = [].slice.call($nn).indexOf(trg); if($n[$i].value < 9)$n[$i].value = $n[$i].value - 0 + 1;
-		});
-	});
-	$nnn.forEach((trg)=>{
-		trg.addEventListener('click',()=>{
-			let $i = [].slice.call($nnn).indexOf(trg); $n[$i].value = 0;
-		});
-	});
-
 	let $logoimage = d.cookie;
 	var $thisURL = location.href.replace('edit','');
 	var $newWin = window.open($thisURL, 'スコアボードオーバーレイ', 'width=640,height=150,scrollbars=no');
+	var $j = d.createElement('script');
+	$j.setAttribute('id','exLjs_sub');
+	$j.setAttribute('src','https://gyokuran.github.io/bmtt/bm3_sub.js');
+
 	$newWin.onload = function(){
 		$newWin.d.write('<html><head><title>スコアボードオーバーレイ</title><style>' + $css + '</style></head><body></body></html>');
 		$newWin.d.write($d);
-		console.log('test')
-
-		let $j = d.createElement('script');
-		$j.setAttribute('id','exLjs_sub');
-		$j.setAttribute('src','https://gyokuran.github.io/bmtt/bm3_sub.js');
 		$newWin.d.body.append($j);
 	}
 
