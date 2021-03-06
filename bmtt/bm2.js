@@ -144,8 +144,8 @@ const $_setTeam = function(trg){
 		if($master[i]['チーム名'] == trg.value){
 			let $namesOption = '<option>' + $master[i]['1人目'] + '</option>' + '<option>' + $master[i]['2人目'] + '</option>' + '<option>' + $master[i]['3人目'] + '</option>';
 			$namesSelect.innerHTML = $namesOption;
-			document.getElementById('player_score_r').value = 0;				
-			document.getElementById('player_score_l').value = 0;				
+			document.getElementById('player_score_r').value = 0;
+			document.getElementById('player_score_l').value = 0;
 			break;
 		} else {
 			if(i == $master.length - 1){
