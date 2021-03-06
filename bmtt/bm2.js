@@ -141,7 +141,7 @@ const $_setTeam = function(trg){
 	}
 	for(let i = 0; i < $master.length; i++){
 		let $namesSelect = trg.previousElementSibling;
-		let $parent = trg.closest('.team').closest('div'), $num0 = $parent.querySelector('.nubclr')[0];
+		let $parent = trg.closest('.team').closest('div'), $num0 = $parent.querySelector('.nubclr');
 		if($master[i]['チーム名'] == trg.value){
 			let $namesOption = '<option>' + $master[i]['1人目'] + '</option>' + '<option>' + $master[i]['2人目'] + '</option>' + '<option>' + $master[i]['3人目'] + '</option>';
 			$namesSelect.innerHTML = $namesOption;
