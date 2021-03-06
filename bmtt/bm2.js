@@ -141,11 +141,11 @@ const $_setTeam = function(trg){
 	}
 	for(let i = 0; i < $master.length; i++){
 		let $namesSelect = trg.previousElementSibling;
-		let $parent = trg.closest('.team').closest('div'), $num0 = $parent.querySelector('.nubclr');
 		if($master[i]['チーム名'] == trg.value){
 			let $namesOption = '<option>' + $master[i]['1人目'] + '</option>' + '<option>' + $master[i]['2人目'] + '</option>' + '<option>' + $master[i]['3人目'] + '</option>';
 			$namesSelect.innerHTML = $namesOption;
-			$num0.click();
+			let $parent = trg.closest('.team').closest('div'), $num0 = $parent.querySelectorAll('.nubclr');
+			$num0[0].click();
 			break;
 		} else {
 			if(i == $master.length - 1){
