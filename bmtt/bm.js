@@ -53,7 +53,7 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label></div>';
 	$d += '<div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
 	$d += '</div>';
-	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
+//	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
 	
 	d.body.insertAdjacentHTML('beforeend',$d);
