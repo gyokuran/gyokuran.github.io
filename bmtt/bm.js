@@ -35,11 +35,11 @@ $css += '#exL .-reverse #up_R { right:35px; left:initial; }';
 $css += '#exL .-reverse #down_R { right:0; left:initial; }';
 $css += '#exL #exL_logo { display:block; width:100%; height:40px; background:no-repeat 50% 50%; background-size:cover; position:relative; overflow:hidden; cursor:pointer; }';
 $css += '#exL #exL_logo input { position:absolute; left:-9999px; }';
+$css += '#exL #exL_logo:before { content:"クリックして画像を設定"; display:inline-block; font-size:12px; color:#777; text-align:center; position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); }';
+$css += '#exL #exL_logo.set:before { display:none; }';
 $css += '#exL .gs { display:flex; justify-content:flex-end; padding:5px 5px 0 0; }';
 $css += '#exL .gs input[type="text"] { width:150px height:30px; font-size:16px; line-height:30px; padding:0 5px; border:1px solid #CCC; }';
 $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px; border:1px solid #CCC; }';
-		
-		
 
 	let $s = d.createElement('style'); $s.innerHTML = $css; d.body.prepend($s);
 	}
