@@ -49,6 +49,7 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 		let $name = ($a[i].innerText)?$a[i].innerText:$a[i].children[0].value, $id = '', $id2 = '';
 		let $length = $name.indexOf('|');
 		if( $length !== -1){
+			console.log($length)
 			$name = $name.slice($length)[0];
 			$id = ' - ' + $name.slice($length)[1];
 			$id2 = $name.slice($length)[1] + ' - ';
