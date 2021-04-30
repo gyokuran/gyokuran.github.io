@@ -50,8 +50,7 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 		let $length = $name.indexOf('・');
 		if( $length !== -1){
 			console.log($length)
-			console.log($name.split($length)[0])
-			console.log($name.split($length)[1])
+			console.log($name.split($length))
 			$name = $name.split($length)[0];
 			$id = ' - ' + $name.split($length)[1];
 			$id2 = $name.split($length)[1] + ' - ';
