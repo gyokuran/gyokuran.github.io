@@ -46,15 +46,15 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [],$c = '',$c2 = '', $d = '', $split = '・';
 	for(i=0; i<$a.length; i++){
 		$b.push($a[i].innerText);
-		let $name = ($a[i].innerText)?$a[i].innerText:$a[i].children[0].value, $id = '', $id2 = '';
-		let $length = $name.indexOf($split);
+		let $data = ($a[i].innerText)?$a[i].innerText:$a[i].children[0].value, $name = '', $id = '', $id2 = '';
+		let $length = $data.indexOf($split);
 		if( $length !== -1){
-			$name = $name.split($split)[0];
-			$id = ' - ' + $name.split($split)[1];
-			$id2 = $name.split($split)[1] + ' - ';
+			$name = $data.split($split)[0];
+			$id = ' - ' + $data.split($split)[1];
+			$id2 = $data.split($split)[1] + ' - ';
 		}
 		$c += '<option>' + $name + $id + '</option>';
-		$c2 += '<option>' + $id + $name + '</option>';
+		$c2 += '<option>' + $id2 + $name + '</option>';
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
 	$d += '<div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
