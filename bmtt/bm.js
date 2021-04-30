@@ -43,15 +43,23 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 
 	let $s = d.createElement('style'); $s.innerHTML = $css; d.body.prepend($s);
 	}
-	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [],$c = '', $d = '';
+	let $a = d.querySelectorAll('.match-flex-0 .name'), $b = [],$c = '',$c2 = '', $d = '';
 	for(i=0; i<$a.length; i++){
 		$b.push($a[i].innerText);
-		$c += '<option>' + (($a[i].innerText)?$a[i].innerText:$a[i].children[0].value) + '</option>';
+		let $name = ($a[i].innerText)?$a[i].innerText:$a[i].children[0].value, $id = '', $id2 = '';
+		let $length = $name.indexOf('|');
+		if( $length !== -1){
+			$name = $name.slice($length)[0];
+			$id = ' - ' + $name.slice($length)[1];
+			$id2 = $name.slice($length)[1] + ' - ';
+		}
+		$c += '<option>' + $name + $id + '</option>';
+		$c2 += '<option>' + $id + $name + '</option>';
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
 	$d += '<div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
 	$d += '<div class="space"><label id="exL_logo"><input type="file" accept="image/*" id="exL_file" onChange="$_pImg(this)"></label></div>';
-	$d += '<div class="right"><select class="name saveobj" id="player_name_r">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
+	$d += '<div class="right"><select class="name saveobj" id="player_name_r">'+$c2+'</select><input type="number" value="0" class="num saveobj" id="player_score_r" maxlength="1" min="0" max="9"><span id="up_R" class="numbtn nubup">+</span><span id="down_R" class="numbtn nubclr">0</span></div>';
 	$d += '</div>';
 //	$d += '<div class="gs"><input type="text" class="csv saveobj" id="csvmaster" value="" placeholder="googleスプレッドシートID"><input type="button" class="submit" value="SET" onClick="$_BTN_getPL()"></div>';
 	$d += '</div></div>';
