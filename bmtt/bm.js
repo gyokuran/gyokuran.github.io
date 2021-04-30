@@ -52,9 +52,8 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 			$id = ' - ' + $data.split($split)[1];
 			$id2 = $data.split($split)[1] + ' - ';
 		} else {
-			$data = $name;
+			$name = $data;
 		}
-		console.log($data.indexOf($split))
 		$c += '<option>' + $name + $id + '</option>';
 		$c2 += '<option>' + $id2 + $name + '</option>';
 	};
