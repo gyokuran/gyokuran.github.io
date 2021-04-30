@@ -47,6 +47,7 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 	for(i=0; i<$a.length; i++){
 		$b.push($a[i].innerText);
 		let $data = ($a[i].innerText)?$a[i].innerText:$a[i].children[0].value, $name = '', $id = '', $id2 = '';
+	/*
 		if( $data.indexOf($split) !== -1){
 			$name = $data.split($split)[0];
 			$id = ' - ' + $data.split($split)[1];
@@ -56,6 +57,9 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 		}
 		$c += '<option>' + $name + $id + '</option>';
 		$c2 += '<option>' + $id2 + $name + '</option>';
+	*/
+		$c += '<option>' + $data + '</option>';
+		$c2 += '<option>' + $data + '</option>';
 	};
 	$d += '<div id="exL"><div class="wrap"><div class="inner">';
 	$d += '<div class="left"><select class="name saveobj" id="player_name_l">'+$c+'</select><input type="number" value="0" class="num saveobj" id="player_score_l" maxlength="1" min="0" max="9"><span id="up_L" class="numbtn nubup">+</span><span id="down_L" class="numbtn nubclr">0</span></div>';
