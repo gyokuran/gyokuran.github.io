@@ -127,7 +127,6 @@ const $_getPL = function(trg){
 	}
 }
 
-
 /*******
 Copyright(c) 2021 @gyokuran
 Released under the MIT license
