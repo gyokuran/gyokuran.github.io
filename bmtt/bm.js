@@ -50,9 +50,9 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 		let $length = $name.indexOf('・');
 		if( $length !== -1){
 			console.log($length)
-			$name = $name.slice($length)[0];
-			$id = ' - ' + $name.slice($length)[1];
-			$id2 = $name.slice($length)[1] + ' - ';
+			$name = $name.split($length)[0];
+			$id = ' - ' + $name.split($length)[1];
+			$id2 = $name.split($length)[1] + ' - ';
 		}
 		$c += '<option>' + $name + $id + '</option>';
 		$c2 += '<option>' + $id + $name + '</option>';
