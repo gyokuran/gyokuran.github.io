@@ -47,11 +47,12 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 	for(i=0; i<$a.length; i++){
 		$b.push($a[i].innerText);
 		let $data = ($a[i].innerText)?$a[i].innerText:$a[i].children[0].value, $name = '', $id = '', $id2 = '';
-		let $length = $data.indexOf($split);
-		if( $length !== -1){
+		if( $data.indexOf($split) !== -1){
 			$name = $data.split($split)[0];
 			$id = ' - ' + $data.split($split)[1];
 			$id2 = $data.split($split)[1] + ' - ';
+		} else {
+			$data = $name;
 		}
 		$c += '<option>' + $name + $id + '</option>';
 		$c2 += '<option>' + $id2 + $name + '</option>';
