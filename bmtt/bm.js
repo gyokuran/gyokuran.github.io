@@ -54,6 +54,7 @@ $css += '#exL .gs input[type="button"] { width:30px; height:30px; font-size:12px
 		} else {
 			$data = $name;
 		}
+		console.log($name)
 		$c += '<option>' + $name + $id + '</option>';
 		$c2 += '<option>' + $id2 + $name + '</option>';
 	};
