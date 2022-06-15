@@ -19,24 +19,146 @@
 </style>
 </head>
 <body>
-  
 <div id="wrap">
+<div id="mapBase">
+ <div class="btns"><span id="btnBigger">2倍</span><span id="btnSmaller">0.5倍</span><span id="btnSmallest">0.2倍</span><span id="btnReset">等倍</span></div>
+ <div class="text"><p>1マスはマイクラ世界の100×100。<br>なので上下100マス以内の座標は一緒くたにされます。<br>大雑把な位置関係の把握に。<br><small>マップ側の字がボケているのは技術上の仕様ですあしからず。。</small></p></div>
+ <div id="tip2"><p id="tipbody2"></p></div>
+ <div id="mapBody"><canvas id="canv" width="10000" height="10000"></canvas><div id="tip"><p id="tipbody"></p></div></div>
+</div>
+</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
-
-//jsonファイルURL
-var $trgurl = 'https://script.google.com/macros/s/AKfycbz3wvgzkAdeV5k2mL6Dhju74aFcrjL_afL9AG9uH096Ey79HMP-QTZQ7e8MLOz6DvQ/exec';
-function $_getJson(){
-  fetch($trgurl)
-  .then(function(response) {
-  return response.json();
-  })
-  .then(function(json) {
-    alert(json[0].x);
+$(function(){
+  $('#btnBigger').on('click', function(){
+    $('#canv').css('transform', 'scale(2)')
+    $_scrollReset()
   });
-}
-$_getJson()
+  $('#btnSmaller').on('click', function(){
+    $('#canv').css('transform', 'scale(0.5)')
+    $_scrollReset()
+  });
+  $('#btnSmallest').on('click', function(){
+    $('#canv').css('transform', 'scale(0.2)')
+    $_scrollReset()
+  });
+  $('#btnReset').on('click', function(){
+    $('#canv').css('transform', 'scale(1)')
+    $_scrollReset()
+  });
 
+  var $maxLength = 10000, $half = $maxLength * 0.5;
+  var $square = 10;
+  var cbody = document.getElementById('canv');
+  var ctx = document.getElementById('canv').getContext('2d');
+  ctx.fillStyle = "rgb(220,220,220)";
+  ctx.fillRect(0, 0, $maxLength, $maxLength);
+  ctx.strokeStyle = 'white'
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (var v = $square; v < $maxLength; v+=$square) {
+    ctx.moveTo(v, 0);
+    ctx.lineTo(v, $maxLength);
+  }
+  for (var h = $square; h < $maxLength; h+=$square) {
+    ctx.moveTo(0, h);
+    ctx.lineTo($maxLength, h);
+  }
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.fillStyle = "rgba(255,32,32,1)";
+  ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
+  ctx.closePath();
+  ctx.fill();
+
+  function $_scrollReset(){
+    $('body,html').animate({
+      scrollTop: $maxLength * 0.5 - ($(window).height() * 0.5),
+      scrollLeft: $maxLength * 0.5 - ($(window).width() * 0.5)
+    }, 500);
+  }
+  $_scrollReset();
+
+  function $_init(json){
+    //  cbody.addEventListener('click', draw, false);
+    cbody.addEventListener('mousemove', over, false);
+    const $pozData = JSON.parse(JSON.stringify(json));
+    for(var i=0; i < $pozData.length; i++){
+      var $pozX = Math.floor(($pozData[i].x - 0) * 0.01) * 10 + $half;
+      var $pozY = Math.floor(($pozData[i].z - 0) * 0.01) * 10 + $half;
+      var $name = $pozData[i].name;
+      ctx.beginPath();
+      var metrics = ctx.measureText($pozData[i].name);
+      ctx.fillStyle = "rgba(255,255,255,0.5)";
+      ctx.fillRect($pozX + 6, $pozY + 6, metrics.width * 1.75, 24);
+      ctx.font = 'normal 15px sans-serif';
+      ctx.strokeStyle = '#000';
+      ctx.strokeText($pozData[i].name, $pozX + 13, $pozY + 24);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.fillStyle = "rgba(32,32,32,1)";
+      ctx.rect($pozX, $pozY, 10, 10);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function draw(e){
+      var tx=e.offsetX;
+      var ty=e.offsetY;
+      var txS = Math.floor(tx * 0.1) * 10;
+      var tyS = Math.floor(ty * 0.1) * 10;
+      ctx.beginPath();
+      ctx.fillStyle = "rgba(0,0,0,0.1)";
+      ctx.rect(txS, tyS, 10, 10);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function over(e){
+      var tx=e.offsetX;
+      var ty=e.offsetY;
+      var txS = Math.floor(tx * 0.1) * 10;
+      var tyS = Math.floor(ty * 0.1) * 10;
+      var txL = txS - 0 + 10;
+      var tyL = tyS - 0 + 10;
+      var $flug = 0;
+      for(var i=0; i < $pozData.length; i++){
+        var $pozX = $pozData[i].x * 0.01 * 10 + $half;
+        var $pozY = $pozData[i].z * 0.01 * 10 + $half;
+        if(($pozX >= txS && $pozX < txL) && ($pozY >= tyS && $pozY < tyL)){
+          if(!$('#tip2').is('.on')){
+            $('#tip').css({'top':tyS + 'px','left':txS + 'px', 'opacity':'1' });
+            $('#tipbody').html($pozData[i].name);
+            $('#tipbody2').html($pozData[i].name + '<br>' + 'X' + $pozData[i].x + ' Z' + $pozData[i].z);
+            $('#tip2').addClass('on');
+            $flug = 1;
+          }
+          break;
+        } else {
+          if(i == $pozData.length - 1){
+            if($('#tip2').is('.on') && $flug == 0){
+              $('#tip2').removeClass('on');
+            }
+          }
+        }
+      }
+    }
+  }
+
+  var $trgurl = 'https://script.google.com/macros/s/AKfycbz3wvgzkAdeV5k2mL6Dhju74aFcrjL_afL9AG9uH096Ey79HMP-QTZQ7e8MLOz6DvQ/exec';
+  function $_getJson(){
+    fetch($trgurl)
+    .then(function(response) {
+    return response.json();
+    })
+    .then(function(json) {
+      $_init(json);
+    });
+  }
+  $_getJson()
+});
 </script>
 </body>
 </html>
