@@ -26,13 +26,16 @@
 //jsonファイルURL
 var $trgurl = 'https://script.google.com/macros/s/AKfycbx0j7MvZOvy-IWG-qpbcXT6s89Hj55GnIetxkYlMHOYqYyabRjsC1BbKHFQxJXMk-I/exec';
 function $_getJson(){
-  fetch($trgurl).then(function(response){
-    return response.text();
-  }).then(function(text){
-    alert(text);
-  });
+  fetch(url)
+  .then(function(response) {
+  return response.json();
+  })
+  .then(function(json) {
+    alert(json[0].x);
+  }
 }
 $_getJson()
+
 </script>
 </body>
 </html>
