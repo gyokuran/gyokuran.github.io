@@ -85,8 +85,8 @@ $(function(){
     cbody.addEventListener('mousemove', over, false);
     const $pozData = JSON.parse(JSON.stringify(json));
     for(var i=0; i < $pozData.length; i++){
-      var $pozX = Math.floor(($pozData[i].x - 0) * 0.1) * 10 + $half;
-      var $pozY = Math.floor(($pozData[i].z - 0) * 0.1) * 10 + $half;
+      var $pozX = Math.floor(($pozData[i].x - 0) * 0.5) * 10 + $half;
+      var $pozY = Math.floor(($pozData[i].z - 0) * 0.5) * 10 + $half;
       var $name = $pozData[i].name;
       ctx.beginPath();
       var metrics = ctx.measureText($pozData[i].name);
