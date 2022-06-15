@@ -46,10 +46,10 @@ $(function(){
     $('#canv').css('transform', 'scale(1)')
     $_scrollReset()
   });
-  var $scale = 1 / 20;
-  var $virtualLength = 2000;
+  var $scale = 1 / 20, $real = 10000;
+  var $virtualLength = $real * $scale;
   var $square = 10;
-  var $maxLength = $virtualLength * $square * $scale * 10, $half = $maxLength * 0.5;
+  var $maxLength = 10000, $half = $maxLength * 0.5;
   var cbody = document.getElementById('canv');
   var ctx = document.getElementById('canv').getContext('2d');
   ctx.fillStyle = "rgb(220,220,220)";
