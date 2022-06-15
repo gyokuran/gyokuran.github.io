@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>マイクラ簡易マップ</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<style>
+#canv { transform:scale(1); transition:all 0.5s linear 0s; }
+.btns { position:fixed; right:10px; top:0; z-index:2000; display:flex; flex-direction:column; }
+.btns span { width:50px; height:50px; margin-top:10px; border-radius:5px; background-color:rgba(255,255,255,0.75); display:flex; justify-content:center; align-items:center; font-size:12px; line-height:1; cursor:pointer; }
+.text { position:fixed; left:10px; top:0; z-index:1000; }
+.text p { text-shadow:1px 1px 0px rgba(255,255,255,0.75); }
+#tip { position:absolute; opacity:0; min-width:100px; transform:translate(20px, 10px); display:none; }
+#tipbody { padding:4px 5px;; line-height:1.5; border-radius:5px; background-color:rgba(255,255,255,0.6); font-size:16px; }
+#tip2 { position:fixed; right:10px; bottom:10px; z-index:2000; mine-height:10px; display:none; }
+#tip2.on { display:block; }
+#tipbody2 { padding:3px 8px; line-height:1.5; border-radius:5px; background-color:rgba(255,255,255,0.8); font-size:20px; text-align:right; }
+</style>
+</head>
+<body>
+<div id="wrap">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+
+//jsonファイルURL
+var $trgurl = 'https://script.google.com/macros/s/AKfycbx0j7MvZOvy-IWG-qpbcXT6s89Hj55GnIetxkYlMHOYqYyabRjsC1BbKHFQxJXMk-I/exec';
+function $_getJson(){
+  fetch($trgurl).then(function(response){
+    return response.text();
+  }).then(function(text){
+    alert(text);
+  });
+}
+$_getJson()
+</script>
+</body>
+</html>
