@@ -16,14 +16,13 @@
 #tip2 { position:fixed; right:10px; bottom:10px; z-index:2000; mine-height:10px; display:none; }
 #tip2.on { display:block; }
 #tipbody2 { padding:3px 8px; line-height:1.5; border-radius:5px; background-color:rgba(255,255,255,0.8); font-size:20px; text-align:right; }
- 
 </style>
 </head>
 <body>
 <div id="wrap">
 <div id="mapBase">
  <div class="btns"><span id="btnBigger">2倍</span><span id="btnSmaller">0.5倍</span><span id="btnSmallest">0.2倍</span><span id="btnReset">等倍</span></div>
- <div class="text"><p>1マスはマイクラ世界の100×100。<br>なので上下100マス以内の座標は一緒くたにされます。<br>大雑把な位置関係の把握に。<br><small>マップ側の字がボケているのは技術上の仕様ですあしからず。。</small></p></div>
+ <div class="text"><p>1マス=100×100<br>大雑把な位置関係の把握に。<br>赤＝原点X0/Z0<br>マウスオーバーで正確な座標が表示されます。<br>ごちゃつくようであれば縮尺を考え直します。<br><small>マップの字がボケているのは技術上の仕様です</small></p></div>
  <div id="tip2"><p id="tipbody2"></p></div>
  <div id="mapBody"><canvas id="canv" width="10000" height="10000"></canvas><div id="tip"><p id="tipbody"></p></div></div>
 </div>
@@ -92,10 +91,10 @@ $(function(){
       ctx.beginPath();
       var metrics = ctx.measureText($pozData[i].name);
       ctx.fillStyle = "rgba(255,255,255,0.5)";
-      ctx.fillRect($pozX + 6, $pozY + 6, metrics.width * 1.75, 24);
-      ctx.font = 'normal 15px sans-serif';
-      ctx.strokeStyle = '#000';
-      ctx.strokeText($pozData[i].name, $pozX + 13, $pozY + 24);
+      ctx.fillRect($pozX + 5, $pozY + 5, metrics.width * 1.75, 16);
+      ctx.font = 'normal 13px sans-serif';
+      ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+      ctx.strokeText($pozData[i].name, $pozX + 8, $pozY + 18);
       ctx.fill();
 
       ctx.beginPath();
