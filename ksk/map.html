@@ -92,7 +92,7 @@ $(function(){
       ctx.beginPath();
       var metrics = ctx.measureText($pozData[i].name);
       ctx.fillStyle = "rgba(255,255,255,0.5)";
-      ctx.fillRect($pozX + 5, $pozY + 5, metrics.width * 1.5, 18);
+      ctx.fillRect($pozX + 5, $pozY + 5, metrics.width * 1.25, 18);
       ctx.font = 'normal 14px sans-serif';
       ctx.strokeStyle = 'rgba(0,0,0,0.5)';
       ctx.strokeText($pozData[i].name, $pozX + 10, $pozY + 20);
