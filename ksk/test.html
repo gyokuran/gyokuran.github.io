@@ -24,9 +24,10 @@
 <script>
 
 //jsonファイルURL
-var $trgurl = 'https://script.google.com/macros/s/AKfycbx0j7MvZOvy-IWG-qpbcXT6s89Hj55GnIetxkYlMHOYqYyabRjsC1BbKHFQxJXMk-I/exec';
+var $trgurl = 'https://script.googleusercontent.com/macros/echo?user_content_key=5v2Rm5Zn2JSOchF2fi_FyqZMdMfhephCMJx1VoCB41FdLOFpUJ5kw1uuqWDnl6FkrTw_iVR8XCwc4QxICc9I2H-hh-Lbge3dm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnP_A_HxRf8KXphvqoQjVWZS1lqhcJavQB4nB7R8Ifrr0CZaBMhNpOvRcmvD5iWwqAD8Zs21Zj4Z49yYBbG4TInDyn1Z4YyOlLg&lib=M5vM-e3-zuvVkUy3R6zMxKmWbXZpsuws-';
+
 function $_getJson(){
-  fetch(url)
+  fetch($trgurl)
   .then(function(response) {
   return response.json();
   })
