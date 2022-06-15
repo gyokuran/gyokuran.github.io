@@ -91,10 +91,10 @@ $(function(){
       ctx.beginPath();
       var metrics = ctx.measureText($pozData[i].name);
       ctx.fillStyle = "rgba(255,255,255,0.5)";
-      ctx.fillRect($pozX + 6, $pozY + 6, metrics.width * 1.75, 20);
+      ctx.fillRect($pozX + 5, $pozY + 5, metrics.width * 1.75, 20);
       ctx.font = 'normal 13px sans-serif';
       ctx.strokeStyle = '#000';
-      ctx.strokeText($pozData[i].name, $pozX + 13, $pozY + 24);
+      ctx.strokeText($pozData[i].name, $pozX + 10, $pozY + 20);
       ctx.fill();
 
       ctx.beginPath();
