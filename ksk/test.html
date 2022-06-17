@@ -68,6 +68,15 @@ $(function(){
   ctx.stroke();
 
   ctx.beginPath();
+  ctx.strokeStyle = 'rgba(32,32,32,1)';
+  ctx.lineWidth = 1;
+  ctx.moveTo($square / 2, 0);
+  ctx.lineTo($square / 2, $maxLength / 2);
+  ctx.moveTo(0, $square / 2);
+  ctx.lineTo($maxLength / 2, $square / 2);
+  ctx.fill();
+
+  ctx.beginPath();
   ctx.fillStyle = "rgba(255,32,32,1)";
   ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
   ctx.closePath();
