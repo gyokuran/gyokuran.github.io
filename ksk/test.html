@@ -169,6 +169,8 @@ $(function(){
   }
   $_getJson()
  
+  $('#wrap').mousedragscrollable();
+});
   jQuery.prototype.mousedragscrollable = function(){
    let target;
    $(this).each(function(i, e){
@@ -210,8 +212,6 @@ $(function(){
     return false;
    });
   }
-  $('#wrap').mousedragscrollable();
-});
 </script>
 </body>
 </html>
