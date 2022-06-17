@@ -175,6 +175,7 @@ $(function(){
    let target;
    $(this).each(function(i, e){
     $(e).mousedown(function(event){
+     console.log(event.clientX);
      event.preventDefault();
      target = $(e);
      $(e).data({
