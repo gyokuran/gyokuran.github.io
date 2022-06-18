@@ -8,7 +8,7 @@
 <style>
 body { overflow:hidden; }
 * { margin:0; padding:0; }
-#wrap { overflow-y:scroll; overflow-x:scroll; max-width:100vw; max-height:100vh; }
+#mapBody { overflow-y:scroll; overflow-x:scroll; max-width:100vw; max-height:100vh; }
 #canv { transform:scale(1); transition:all 0.5s linear 0s; }
 .btns { position:fixed; right:10px; top:0; z-index:2000; display:flex; flex-direction:column; }
 .btns span { width:50px; height:50px; margin-top:10px; border-radius:5px; background-color:rgba(255,255,255,0.75); display:flex; justify-content:center; align-items:center; font-size:12px; line-height:1; cursor:pointer; }
@@ -189,8 +189,8 @@ $(function(){
   }
   $_getJson()
  
-  $('#wrap').mousedragscrollable();
-  $('#wrap').mousemove(function(e){
+  $('#mapBody').mousedragscrollable();
+  $('#mapBody').mousemove(function(e){
      let poz_x = (e.offsetX - ($maxLength / 2)) * 2 + 5;
      let poz_y = (e.offsetY - ($maxLength / 2)) * 2 + 5;
      $('#pozX').html(poz_x);
