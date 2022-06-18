@@ -2,10 +2,13 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<title>マイクラ簡易マップ</title>
+<title>格ゲーマーサーバ簡易分布図</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <style>
+body { overflow:hidden; }
+* { margin:0; padding:0; }
+#wrap { overflow-y:scroll; overflow-x:scroll; max-width:100vw; max-height:100vh; }
 #canv { transform:scale(1); transition:all 0.5s linear 0s; }
 .btns { position:fixed; right:10px; top:0; z-index:2000; display:flex; flex-direction:column; }
 .btns span { width:50px; height:50px; margin-top:10px; border-radius:5px; background-color:rgba(255,255,255,0.75); display:flex; justify-content:center; align-items:center; font-size:12px; line-height:1; cursor:pointer; }
@@ -22,7 +25,7 @@
 <div id="wrap">
 <div id="mapBase">
  <div class="btns"><span id="btnBigger">2倍</span><span id="btnSmaller">0.5倍</span><span id="btnSmallest">0.2倍</span><span id="btnReset">等倍</span></div>
- <div class="text"><p>1マス=20×20ブロック、全体20000×20000ブロック分の分布図です。<br>大雑把な位置関係の把握に。<br>赤＝原点X0/Z0<br>マウスオーバーで正確な座標が表示されます。<br>新たにリストに書き込んだらこの画面をリロードしてください。<br>マップの字がボケているのは仕様ですあしからず。</p></div>
+　　<div class="text"><p>1マス=20×20ブロック、全体20000×20000ブロック分の分布図です。<br>大雑把な位置関係の把握に。<br><span style="color:#f00;">赤</span>＝原点X0/Z0<br>マウスオーバーで正確な座標が表示されます。<br>新たにリストに書き込んだらこの画面をリロードしてください。<br>マップの字がボケているのは仕様ですあしからず。</p></div>
  <div id="tip2"><p id="tipbody2"></p></div>
  <div id="mapBody"><canvas id="canv" width="10000" height="10000"></canvas><div id="tip"><p id="tipbody"></p></div></div>
 </div>
@@ -68,13 +71,22 @@ $(function(){
   ctx.stroke();
 
   ctx.beginPath();
+  ctx.strokeStyle = 'rgba(32,32,32,1)';
+  ctx.lineWidth = 1;
+  ctx.moveTo($square / 2, 0);
+  ctx.lineTo($square / 2, $maxLength / 2);
+  ctx.moveTo(0, $square / 2);
+  ctx.lineTo($maxLength / 2, $square / 2);
+  ctx.fill();
+
+  ctx.beginPath();
   ctx.fillStyle = "rgba(255,32,32,1)";
   ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
   ctx.closePath();
   ctx.fill();
 
   function $_scrollReset(){
-    $('body,html').animate({
+    $('#wrap').animate({
       scrollTop: $maxLength * 0.5 - ($(window).height() * 0.5),
       scrollLeft: $maxLength * 0.5 - ($(window).width() * 0.5)
     }, 500);
@@ -92,10 +104,10 @@ $(function(){
       ctx.beginPath();
       var metrics = ctx.measureText($pozData[i].name);
       ctx.fillStyle = "rgba(255,255,255,0.5)";
-      ctx.fillRect($pozX + 5, $pozY + 5, metrics.width * 1.1, 18);
-      ctx.font = 'normal 14px sans-serif';
+      ctx.fillRect($pozX + 5, $pozY + 5, metrics.width * 1.75, 16);
+      ctx.font = 'normal 13px sans-serif';
       ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-      ctx.strokeText($pozData[i].name, $pozX + 10, $pozY + 20);
+      ctx.strokeText($pozData[i].name, $pozX + 8, $pozY + 18);
       ctx.fill();
 
       ctx.beginPath();
@@ -159,7 +171,51 @@ $(function(){
     });
   }
   $_getJson()
+ 
+  $('#wrap').mousedragscrollable();
 });
+  jQuery.prototype.mousedragscrollable = function(){
+   let target;
+   $(this).each(function(i, e){
+    $(e).mousedown(function(event){
+     console.log(event.clientX);
+     event.preventDefault();
+     target = $(e);
+     $(e).data({
+      down: true,
+      move: false,
+      x: event.clientX,
+      y: event.clientY,
+      scrollleft: $(e).scrollLeft(),
+      scrolltop: $(e).scrollTop(),
+     });
+     return false;
+    });
+    $(e).click(function(event){
+     if($(e).data("move")){
+      return false;
+     }
+    });
+   });
+   $(document).mousemove(function(event){
+    if($(target).data("down")){
+     event.preventDefault();
+     let move_x = $(target).data("x") - event.clientX;
+     let move_y = $(target).data("y") - event.clientY;
+     if (move_x !== 0 || move_y !== 0) {
+      $(target).data("move", true);
+     } else {
+      return;
+     }
+     $(target).scrollLeft($(target).data("scrollleft") + move_x);
+     $(target).scrollTop($(target).data("scrolltop") + move_y);
+     return false;
+    }
+   }).mouseup(function (event) {
+    $(target).data("down", false);
+    return false;
+   });
+  }
 </script>
 </body>
 </html>
