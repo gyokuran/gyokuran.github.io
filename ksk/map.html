@@ -219,7 +219,7 @@ $(function(){
      }
     });
    });
-   $(document).mousemove(function(event){
+   $('#mapBody').mousemove(function(event){
     if($(target).data("down")){
      event.preventDefault();
      let move_x = $(target).data("x") - event.clientX;
