@@ -64,45 +64,48 @@ $(function(){
   var $maxLength = 10000, $half = $maxLength * 0.5;
   var cbody = document.getElementById('canv');
   var ctx = document.getElementById('canv').getContext('2d');
-  ctx.fillStyle = "rgb(220,220,220)";
-  ctx.fillRect(0, 0, $maxLength, $maxLength);
-  ctx.strokeStyle = 'white'
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  for (var v = $square; v < $maxLength; v+=$square) {
-    ctx.moveTo(v, 0);
-    ctx.lineTo(v, $maxLength);
-  }
-  for (var h = $square; h < $maxLength; h+=$square) {
-    ctx.moveTo(0, h);
-    ctx.lineTo($maxLength, h);
-  }
-  ctx.stroke();
+  function $_set() {
+   ctx.fillStyle = "rgb(220,220,220)";
+   ctx.fillRect(0, 0, $maxLength, $maxLength);
+   ctx.strokeStyle = 'white'
+   ctx.lineWidth = 1;
+   ctx.beginPath();
+   for (var v = $square; v < $maxLength; v+=$square) {
+     ctx.moveTo(v, 0);
+     ctx.lineTo(v, $maxLength);
+   }
+   for (var h = $square; h < $maxLength; h+=$square) {
+     ctx.moveTo(0, h);
+     ctx.lineTo($maxLength, h);
+   }
+   ctx.stroke();
 
-  ctx.beginPath();
-  ctx.strokeStyle = 'rgba(240,240,240,1)';
-  ctx.lineWidth = 5;
-  ctx.moveTo($maxLength / 2, 0);
-  ctx.lineTo($maxLength / 2, $maxLength);
-  ctx.moveTo(0, $maxLength / 2);
-  ctx.lineTo($maxLength, $maxLength / 2);
-  ctx.stroke();
- 
-  ctx.beginPath();
-  ctx.strokeStyle = 'rgba(255,255,255,1)';
-  ctx.lineWidth = 1;
-  ctx.moveTo($maxLength / 2, 0);
-  ctx.lineTo($maxLength / 2, $maxLength);
-  ctx.moveTo(0, $maxLength / 2);
-  ctx.lineTo($maxLength, $maxLength / 2);
-  ctx.stroke();
+   ctx.beginPath();
+   ctx.strokeStyle = 'rgba(240,240,240,1)';
+   ctx.lineWidth = 5;
+   ctx.moveTo($maxLength / 2, 0);
+   ctx.lineTo($maxLength / 2, $maxLength);
+   ctx.moveTo(0, $maxLength / 2);
+   ctx.lineTo($maxLength, $maxLength / 2);
+   ctx.stroke();
 
-  ctx.beginPath();
-  ctx.fillStyle = "rgba(255,32,32,1)";
-  ctx.arc($maxLength / 2, $maxLength / 2, 5, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
-//  ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
-  ctx.closePath();
-  ctx.fill();
+   ctx.beginPath();
+   ctx.strokeStyle = 'rgba(255,255,255,1)';
+   ctx.lineWidth = 1;
+   ctx.moveTo($maxLength / 2, 0);
+   ctx.lineTo($maxLength / 2, $maxLength);
+   ctx.moveTo(0, $maxLength / 2);
+   ctx.lineTo($maxLength, $maxLength / 2);
+   ctx.stroke();
+
+   ctx.beginPath();
+   ctx.fillStyle = "rgba(255,32,32,1)";
+   ctx.arc($maxLength / 2, $maxLength / 2, 5, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
+ //  ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
+   ctx.closePath();
+   ctx.fill();
+  }
+  $_set();
 
   function $_scrollReset(){
     $('#mapBody').animate({
@@ -198,6 +201,26 @@ $(function(){
      $('#pozX').html(poz_x);
      $('#pozY').html(poz_y);
   });
+
+  function $_checkXZ($X, $Z){
+   ctx.clearRect(0, 0, $maxLength, $maxLength);
+   let $x = parseInt($X), $z = parseInt($Z);
+   $_set();
+   $_getJson();
+   ctx.beginPath();
+   ctx.fillStyle = "rgba(32,255,32,1)";
+   ctx.arc($x, $z, 4, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
+   ctx.closePath();
+   ctx.font = 'normal 13px sans-serif';
+   ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+   ctx.strokeText('現在地', $x + 10, $z + 10);
+   ctx.fill();
+  }
+  $('#checkXZ').on('click', function(){
+   if($('#inputX').val() && $('#inputZ').val()){
+    $_checkXZ($('#inputX').val(), $('#inputZ').val());
+   }
+  }
 });
   jQuery.prototype.mousedragscrollable = function(){
    let target;
