@@ -176,8 +176,8 @@ $(function(){
  
   $('#wrap').mousedragscrollable();
   $('#wrap').mousemove(function(e){
-     let poz_x = e.offsetX - ($maxLength / 2) + 5;
-     let poz_y = e.offsetY - ($maxLength / 2) + 5;
+     let poz_x = (e.offsetX - ($maxLength / 2)) * 2 + 5;
+     let poz_y = (e.offsetY - ($maxLength / 2)) * 2 + 5;
      $('#pozX').html(poz_x);
      $('#pozY').html(poz_y);
   });
