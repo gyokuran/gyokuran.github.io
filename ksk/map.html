@@ -74,14 +74,23 @@ $(function(){
   ctx.stroke();
 
   ctx.beginPath();
-  ctx.strokeStyle = 'rgba(255,250,200,1)';
-  ctx.lineWidth = 1;
+  ctx.strokeStyle = 'rgba(255,200,200,1)';
+  ctx.lineWidth = 3;
   ctx.moveTo($maxLength / 2, 0);
   ctx.lineTo($maxLength / 2, $maxLength);
   ctx.moveTo(0, $maxLength / 2);
   ctx.lineTo($maxLength, $maxLength / 2);
   ctx.stroke();
  
+  ctx.beginPath();
+  ctx.strokeStyle = 'rgba(255,255,255,1)';
+  ctx.lineWidth = 1;
+  ctx.moveTo($maxLength / 2, 0);
+  ctx.lineTo($maxLength / 2, $maxLength);
+  ctx.moveTo(0, $maxLength / 2);
+  ctx.lineTo($maxLength, $maxLength / 2);
+  ctx.stroke();
+
   ctx.beginPath();
   ctx.fillStyle = "rgba(255,32,32,1)";
   ctx.arc($maxLength / 2, $maxLength / 2, 5, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
