@@ -84,7 +84,8 @@ $(function(){
 
   ctx.beginPath();
   ctx.fillStyle = "rgba(255,32,32,1)";
-  ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
+  ctx.arc($maxLength / 2, $maxLength / 2, 8, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
+//  ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
   ctx.closePath();
   ctx.fill();
 
