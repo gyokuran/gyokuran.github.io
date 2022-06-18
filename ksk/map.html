@@ -204,7 +204,7 @@ $(function(){
 
   function $_checkXZ($X, $Z){
    ctx.clearRect(0, 0, $maxLength, $maxLength);
-   let $x = $maxLength / 2 + parseInt($X), $z = $maxLength / 2 + parseInt($Z);
+   let $x = ($maxLength / 2 + parseInt($X)) / 2, $z = ($maxLength / 2 + parseInt($Z)) / 2;
    $_set();
    $_getJson();
    ctx.beginPath();
