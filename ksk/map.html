@@ -175,6 +175,12 @@ $(function(){
   $_getJson()
  
   $('#wrap').mousedragscrollable();
+  $('#wrap').mousemove(function(e){
+     let poz_x = e.clientX;
+     let poz_y = e.clientY;
+     $('#pozX').html(poz_x);
+     $('#pozY').html(poz_y);
+  });
 });
   jQuery.prototype.mousedragscrollable = function(){
    let target;
@@ -200,10 +206,6 @@ $(function(){
     });
    });
    $(document).mousemove(function(event){
-    let poz_x = event.clientX;
-    let poz_y = event.clientY;
-    $('#pozX').html(poz_x);
-    $('#pozY').html(poz_y);
     if($(target).data("down")){
      event.preventDefault();
      let move_x = $(target).data("x") - event.clientX;
