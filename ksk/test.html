@@ -6,6 +6,8 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <style>
+body { overflow:hidden; }
+* { margin:0; padding:0; }
 #wrap { overflow-y:scroll; overflow-x:scroll; max-width:100vw; max-height:100vh; }
 #canv { transform:scale(1); transition:all 0.5s linear 0s; }
 .btns { position:fixed; right:10px; top:0; z-index:2000; display:flex; flex-direction:column; }
@@ -84,7 +86,7 @@ $(function(){
   ctx.fill();
 
   function $_scrollReset(){
-    $('body,html').animate({
+    $('#wrap').animate({
       scrollTop: $maxLength * 0.5 - ($(window).height() * 0.5),
       scrollLeft: $maxLength * 0.5 - ($(window).width() * 0.5)
     }, 500);
