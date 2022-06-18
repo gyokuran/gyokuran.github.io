@@ -21,6 +21,9 @@ body { overflow:hidden; }
 #tipbody2 { padding:2px 11px; line-height:1.5; border-radius:4px; background-color:rgba(255,255,255,0.8); font-size:20px; text-align:right; }
 #pozbox { position:fixed; bottom:20px; left:10px; }
 #pozbox #pozX { padding-right:1em; }
+#checkmy { position:fixed; left:50%; transform:translateX(-50%); bottom:20px; padding:10px 20px; background:#255,255,255,0.8; display:none; }
+#checkmy input { width:100px; height:30px; padding:5px; line-height:30px; }
+#checkmy #inputX { margin-right:10px; }
 </style>
 </head>
 <body>
@@ -31,6 +34,7 @@ body { overflow:hidden; }
 　　<div class="text"><p>1マス=20×20ブロック、X座標Z座標それぞれ-9999〜9999まで。<span style="color:#f00;">赤</span>＝X:0 Z:0<br>マウスオーバーで詳細な座標が表示されます。<br>新たにリストに書き込んだらこの画面をリロードしてください。</p></div>
  <div id="tip2"><p id="tipbody2"></p></div>
  <div id="pozbox">X:<span id="pozX"></span>Z:<span id="pozY"></span></div>
+ <div id="checkmy"><p>現在地チェック</p>X<input type="number" id="inputX">Z<input type="number" id="inputZ"></div>
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
