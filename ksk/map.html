@@ -211,14 +211,15 @@ $(function(){
    ctx.fillStyle = "rgba(32,255,32,1)";
    ctx.arc($x, $z, 4, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
    ctx.closePath();
+   ctx.fill();
    ctx.font = 'normal 13px sans-serif';
    ctx.strokeStyle = 'rgba(0,0,0,0.5)';
    ctx.strokeText('現在地', $x + 10, $z + 10);
-   ctx.fill();
   }
   $('#checkXZ').on('click', function(){
-   if($('#inputX').val() && $('#inputZ').val()){
-    $_checkXZ($('#inputX').val(), $('#inputZ').val());
+   let $x = $('#inputX').val(), $z = $('#inputZ').val();
+   if(($x > -10000 && $x < 10000) && ($z > -10000 && $z < 10000)){
+    $_checkXZ($x, $z);
    }
   });
 });
