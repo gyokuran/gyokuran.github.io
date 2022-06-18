@@ -204,18 +204,17 @@ $(function(){
 
   function $_checkXZ($X, $Z){
    ctx.clearRect(0, 0, $maxLength, $maxLength);
-   let $x = parseInt($X), $z = parseInt($Z);
+   let $x = $maxLength / 2 + parseInt($X), $z = $maxLength / 2 + parseInt($Z);
    $_set();
    $_getJson();
    ctx.beginPath();
-   ctx.fillStyle = "rgba(32,255,32,1)";
+   ctx.fillStyle = "rgba(0,200,100,1)";
    ctx.arc($x, $z, 4, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
    ctx.closePath();
    ctx.fill();
    ctx.font = 'normal 13px sans-serif';
    ctx.strokeStyle = 'rgba(0,0,0,0.5)';
    ctx.strokeText('現在地', $x + 10, $z + 10);
-   console.log($x + ' | ' + $z);
   }
   $('#checkXZ').on('click', function(){
    let $x = $('#inputX').val(), $z = $('#inputZ').val();
