@@ -147,7 +147,7 @@ $(function(){
           if(!$('#tip2').is('.on')){
             $('#tip').css({'top':tyS + 'px','left':txS + 'px', 'opacity':'1' });
             $('#tipbody').html($pozData[i].name);
-            $('#tipbody2').html($pozData[i].name + '<br>' + 'X' + $pozData[i].x + ' Z' + $pozData[i].z);
+            $('#tipbody2').html('<strong><small>$pozData[i].name + '</small></strong><br>' + 'X:' + $pozData[i].x + ' Z:' + $pozData[i].z);
             $('#tip2').addClass('on');
             $flug = 1;
           }
