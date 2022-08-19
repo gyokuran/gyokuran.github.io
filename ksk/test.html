@@ -8,7 +8,7 @@
 <style>
 body { overflow:hidden; }
 * { margin:0; padding:0; }
-#wrap { overflow-y:scroll; overflow-x:scroll; max-width:100vw; max-height:100vh; }
+#mapBody { overflow-y:scroll; overflow-x:scroll; max-width:100vw; max-height:100vh; }
 #canv { transform:scale(1); transition:all 0.5s linear 0s; }
 .btns { position:fixed; right:10px; top:0; z-index:2000; display:flex; flex-direction:column; }
 .btns span { width:50px; height:50px; margin-top:10px; border-radius:5px; background-color:rgba(255,255,255,0.75); display:flex; justify-content:center; align-items:center; font-size:12px; line-height:1; cursor:pointer; }
@@ -16,18 +16,27 @@ body { overflow:hidden; }
 .text p { text-shadow:1px 1px 0px rgba(255,255,255,0.75); }
 #tip { position:absolute; opacity:0; min-width:100px; transform:translate(20px, 10px); display:none; }
 #tipbody { padding:4px 5px;; line-height:1.5; border-radius:5px; background-color:rgba(255,255,255,0.6); font-size:16px; }
-#tip2 { position:fixed; right:10px; bottom:10px; z-index:2000; mine-height:10px; display:none; }
-#tip2.on { display:block; }
-#tipbody2 { padding:3px 8px; line-height:1.5; border-radius:5px; background-color:rgba(255,255,255,0.8); font-size:20px; text-align:right; }
+#tip2 { position:fixed; left:50%; transform:translateX(-50%); bottom:-100px; z-index:2000; min-height:10px; transition:all 0.25s ease-in-out 0s; }
+#tip2.on { bottom:25px; }
+#tipbody2 { padding:2px 11px; line-height:1.5; border-radius:4px; background-color:rgba(255,255,255,0.8); font-size:20px; text-align:center; }
+#pozbox { position:fixed; bottom:20px; left:10px; }
+#pozbox #pozX { padding-right:1em; }
+#checkmy { position:fixed; right:15px; bottom:15px; padding:5px 20px 10px; background:rgba(255,255,255,0.8); }
+#checkmy p { font-size:12px; text-align:center; }
+#checkmy input[type="number"] { width:100px; height:24px; padding:5px; line-height:24px; font-size:16px; margin-left:5px; }
+#checkmy #inputX { margin-right:10px; }
+#checkmy #checkXZ { margin-left:10px; padding:5px 6px; cursor:pointer; }
 </style>
 </head>
 <body>
 <div id="wrap">
 <div id="mapBase">
- <div class="btns"><span id="btnBigger">2倍</span><span id="btnSmaller">0.5倍</span><span id="btnSmallest">0.2倍</span><span id="btnReset">等倍</span></div>
-　　<div class="text"><p>1マス=20×20ブロック、全体20000×20000ブロック分の分布図です。<br>大雑把な位置関係の把握に。<br><span style="color:#f00;">赤</span>＝原点X0/Z0<br>マウスオーバーで正確な座標が表示されます。<br>新たにリストに書き込んだらこの画面をリロードしてください。<br>マップの字がボケているのは仕様ですあしからず。</p></div>
- <div id="tip2"><p id="tipbody2"></p></div>
  <div id="mapBody"><canvas id="canv" width="10000" height="10000"></canvas><div id="tip"><p id="tipbody"></p></div></div>
+ <div class="btns"><span id="btnBigger">2倍</span><span id="btnSmaller">0.5倍</span><span id="btnSmallest">0.2倍</span><span id="btnReset">等倍</span></div>
+　　<div class="text"><p>1マス=20×20ブロック、X座標Z座標それぞれ-9999〜9999まで。<span style="color:#f00;">●</span>＝X:0 Z:0<br>マウスオーバーで詳細な座標が表示されます。<br>新たにリストに書き込んだらこの画面をリロードしてください。</p></div>
+ <div id="tip2"><p id="tipbody2"></p></div>
+ <div id="pozbox">X:<span id="pozX"></span>Z:<span id="pozY"></span></div>
+ <div id="checkmy"><p>現在地チェック</p>X<input type="number" id="inputX">Z<input type="number" id="inputZ"><input type="button" id="checkXZ" value="チェック"></div>
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -55,38 +64,51 @@ $(function(){
   var $maxLength = 10000, $half = $maxLength * 0.5;
   var cbody = document.getElementById('canv');
   var ctx = document.getElementById('canv').getContext('2d');
-  ctx.fillStyle = "rgb(220,220,220)";
-  ctx.fillRect(0, 0, $maxLength, $maxLength);
-  ctx.strokeStyle = 'white'
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  for (var v = $square; v < $maxLength; v+=$square) {
-    ctx.moveTo(v, 0);
-    ctx.lineTo(v, $maxLength);
-  }
-  for (var h = $square; h < $maxLength; h+=$square) {
-    ctx.moveTo(0, h);
-    ctx.lineTo($maxLength, h);
-  }
-  ctx.stroke();
+  function $_set() {
+   ctx.fillStyle = "rgb(220,220,220)";
+   ctx.fillRect(0, 0, $maxLength, $maxLength);
+   ctx.strokeStyle = 'white'
+   ctx.lineWidth = 1;
+   ctx.beginPath();
+   for (var v = $square; v < $maxLength; v+=$square) {
+     ctx.moveTo(v, 0);
+     ctx.lineTo(v, $maxLength);
+   }
+   for (var h = $square; h < $maxLength; h+=$square) {
+     ctx.moveTo(0, h);
+     ctx.lineTo($maxLength, h);
+   }
+   ctx.stroke();
 
-  ctx.beginPath();
-  ctx.strokeStyle = 'rgba(32,32,32,1)';
-  ctx.lineWidth = 1;
-  ctx.moveTo($square / 2, 0);
-  ctx.lineTo($square / 2, $maxLength / 2);
-  ctx.moveTo(0, $square / 2);
-  ctx.lineTo($maxLength / 2, $square / 2);
-  ctx.fill();
+   ctx.beginPath();
+   ctx.strokeStyle = 'rgba(240,240,240,1)';
+   ctx.lineWidth = 5;
+   ctx.moveTo($maxLength / 2, 0);
+   ctx.lineTo($maxLength / 2, $maxLength);
+   ctx.moveTo(0, $maxLength / 2);
+   ctx.lineTo($maxLength, $maxLength / 2);
+   ctx.stroke();
 
-  ctx.beginPath();
-  ctx.fillStyle = "rgba(255,32,32,1)";
-  ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
-  ctx.closePath();
-  ctx.fill();
+   ctx.beginPath();
+   ctx.strokeStyle = 'rgba(255,255,255,1)';
+   ctx.lineWidth = 1;
+   ctx.moveTo($maxLength / 2, 0);
+   ctx.lineTo($maxLength / 2, $maxLength);
+   ctx.moveTo(0, $maxLength / 2);
+   ctx.lineTo($maxLength, $maxLength / 2);
+   ctx.stroke();
+
+   ctx.beginPath();
+   ctx.fillStyle = "rgba(255,32,32,1)";
+   ctx.arc($maxLength / 2, $maxLength / 2, 5, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
+ //  ctx.rect(($maxLength * 0.5), ($maxLength * 0.5), 10, 10);
+   ctx.closePath();
+   ctx.fill();
+  }
+  $_set();
 
   function $_scrollReset(){
-    $('#wrap').animate({
+    $('#mapBody').animate({
       scrollTop: $maxLength * 0.5 - ($(window).height() * 0.5),
       scrollLeft: $maxLength * 0.5 - ($(window).width() * 0.5)
     }, 500);
@@ -104,14 +126,14 @@ $(function(){
       ctx.beginPath();
       var metrics = ctx.measureText($pozData[i].name);
       ctx.fillStyle = "rgba(255,255,255,0.5)";
-      ctx.fillRect($pozX + 5, $pozY + 5, metrics.width * 1.75, 16);
+      ctx.fillRect($pozX + 6, $pozY + 5, metrics.width * 1.1 + 5, 18);
       ctx.font = 'normal 13px sans-serif';
-      ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-      ctx.strokeText($pozData[i].name, $pozX + 8, $pozY + 18);
+      ctx.strokeStyle = 'rgba(0,0,0,0.8)';
+      ctx.strokeText($pozData[i].name, $pozX + 11, $pozY + 19);
       ctx.fill();
 
       ctx.beginPath();
-      ctx.fillStyle = "rgba(32,32,32,1)";
+      ctx.fillStyle = "rgba(64,64,32,1)";
       ctx.rect($pozX, $pozY, 10, 10);
       ctx.closePath();
       ctx.fill();
@@ -144,7 +166,7 @@ $(function(){
           if(!$('#tip2').is('.on')){
             $('#tip').css({'top':tyS + 'px','left':txS + 'px', 'opacity':'1' });
             $('#tipbody').html($pozData[i].name);
-            $('#tipbody2').html($pozData[i].name + '<br>' + 'X' + $pozData[i].x + ' Z' + $pozData[i].z);
+            $('#tipbody2').html('<strong><small>' + $pozData[i].name + '</small></strong><br>' + 'X:' + $pozData[i].x + ' Z:' + $pozData[i].z);
             $('#tip2').addClass('on');
             $flug = 1;
           }
@@ -172,13 +194,39 @@ $(function(){
   }
   $_getJson()
  
-  $('#wrap').mousedragscrollable();
+  $('#mapBody').mousedragscrollable();
+  $('#mapBody').mousemove(function(e){
+     let poz_x = (e.offsetX - ($maxLength / 2)) * 2 + 5;
+     let poz_y = (e.offsetY - ($maxLength / 2)) * 2 + 5;
+     $('#pozX').html(poz_x);
+     $('#pozY').html(poz_y);
+  });
+
+  function $_checkXZ($X, $Z){
+   ctx.clearRect(0, 0, $maxLength, $maxLength);
+   let $x = $maxLength / 2 + (parseInt($X) / 2), $z = $maxLength / 2 + (parseInt($Z) / 2);
+   $_set();
+   $_getJson();
+   ctx.beginPath();
+   ctx.fillStyle = "rgba(0,180,120,1)";
+   ctx.arc($x, $z, 6, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
+   ctx.closePath();
+   ctx.fill();
+   ctx.font = 'normal 13px sans-serif';
+   ctx.strokeStyle = 'rgba(0,0,0,1)';
+   ctx.strokeText('現在地', $x + 10, $z + 10);
+  }
+  $('#checkXZ').on('click', function(){
+   let $x = $('#inputX').val(), $z = $('#inputZ').val();
+   if(($x > -10000 && $x < 10000) && ($z > -10000 && $z < 10000)){
+    $_checkXZ($x, $z);
+   }
+  });
 });
   jQuery.prototype.mousedragscrollable = function(){
    let target;
    $(this).each(function(i, e){
     $(e).mousedown(function(event){
-     console.log(event.clientX);
      event.preventDefault();
      target = $(e);
      $(e).data({
@@ -197,7 +245,7 @@ $(function(){
      }
     });
    });
-   $(document).mousemove(function(event){
+   $('#mapBody').mousemove(function(event){
     if($(target).data("down")){
      event.preventDefault();
      let move_x = $(target).data("x") - event.clientX;
