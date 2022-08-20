@@ -58,10 +58,10 @@ $(function(){
     $('#canv').css('transform', 'scale(1)')
     $_scrollReset()
   });
-  var $scale = 1 / 20, $real = 10000;
+  var $scale = 1 / 20, $real = 30000;
   var $virtualLength = $real * $scale;
   var $square = 10;
-  var $maxLength = 10000, $half = $maxLength * 0.5;
+  var $maxLength = 30000, $half = $maxLength * 0.5;
   var cbody = document.getElementById('canv');
   var ctx = document.getElementById('canv').getContext('2d');
   function $_set() {
@@ -218,7 +218,7 @@ $(function(){
   }
   $('#checkXZ').on('click', function(){
    let $x = $('#inputX').val(), $z = $('#inputZ').val();
-   if(($x > -10000 && $x < 10000) && ($z > -10000 && $z < 10000)){
+   if(($x > -30000 && $x < 30000) && ($z > -30000 && $z < 30000)){
     $_checkXZ($x, $z);
    }
   });
