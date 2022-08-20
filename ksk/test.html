@@ -31,7 +31,7 @@ body { overflow:hidden; }
 <body>
 <div id="wrap">
 <div id="mapBase">
- <div id="mapBody"><canvas id="canv" width="30000" height="30000"></canvas><div id="tip"><p id="tipbody"></p></div></div>
+ <div id="mapBody"><canvas id="canv" width="20000" height="20000"></canvas><div id="tip"><p id="tipbody"></p></div></div>
  <div class="btns"><span id="btnBigger">2倍</span><span id="btnSmaller">0.5倍</span><span id="btnSmallest">0.2倍</span><span id="btnReset">等倍</span></div>
 　　<div class="text"><p>1マス=20×20ブロック、X座標Z座標それぞれ-9999〜9999まで。<span style="color:#f00;">●</span>＝X:0 Z:0<br>マウスオーバーで詳細な座標が表示されます。<br>新たにリストに書き込んだらこの画面をリロードしてください。</p></div>
  <div id="tip2"><p id="tipbody2"></p></div>
@@ -58,10 +58,10 @@ $(function(){
     $('#canv').css('transform', 'scale(1)')
     $_scrollReset()
   });
-  var $scale = 1 / 20, $real = 10000;
+  var $scale = 1 / 20, $real = 20000;
   var $virtualLength = $real * $scale;
   var $square = 10;
-  var $maxLength = 30000, $half = $maxLength * 0.5;
+  var $maxLength = 20000, $half = $maxLength * 0.5;
   var cbody = document.getElementById('canv');
   var ctx = document.getElementById('canv').getContext('2d');
   function $_set() {
