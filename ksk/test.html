@@ -26,6 +26,14 @@ body { overflow:hidden; }
 #checkmy input[type="number"] { width:100px; height:24px; padding:5px; line-height:24px; font-size:16px; margin-left:5px; }
 #checkmy #inputX { margin-right:10px; }
 #checkmy #checkXZ { margin-left:10px; padding:5px 6px; cursor:pointer; }
+#btnLeft,
+#btnRight { position:absolute; width:50px; height:50px; top:50%; transform:translateY(-50%); background-color:rgba(255,255,255,0.9); display:flex; }
+#btnLeft::before,
+#btnRight::before { content:''; display:inline-block; width:30px; height:30px; }
+#btnLeft { left:0; }
+#btnRight { right:0; }
+#btnLeft::before { border-top:2px solid #000; border-right:2px solid #000; transform:rotate(-45deg); }
+#btnRight::before { border-top:2px solid #000; border-left:2px solid #000; transform:rotate(45deg); }
 </style>
 </head>
 <body>
@@ -37,6 +45,8 @@ body { overflow:hidden; }
  <div id="tip2"><p id="tipbody2"></p></div>
  <div id="pozbox">X:<span id="pozX"></span>Z:<span id="pozY"></span></div>
  <div id="checkmy"><p>現在地チェック</p>X<input type="number" id="inputX">Z<input type="number" id="inputZ"><input type="button" id="checkXZ" value="チェック"></div>
+ <div id="btnLeft"></div>
+ <div id="btnRight"></div>
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
